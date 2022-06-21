@@ -1,0 +1,220 @@
+/home/claudia/anaconda3/bin/quast -o quast/ --space-efficient refseq_210622/bacteria/GCF_000253355.1/GCF_000253355.1_ASM25335v1_genomic.fna refseq_210622/bacteria/GCF_000665865.1/GCF_000665865.1_Myco_afri_K85_V1_genomic.fna refseq_210622/bacteria/GCF_000666065.1/GCF_000666065.1_Myco_afri_MAL010084_V1_genomic.fna refseq_210622/bacteria/GCF_000666125.1/GCF_000666125.1_Myco_afri_MAL020148_V1_genomic.fna refseq_210622/bacteria/GCF_000666185.1/GCF_000666185.1_Myco_afri_MAL010070_V1_genomic.fna refseq_210622/bacteria/GCF_000666205.1/GCF_000666205.1_Myco_afri_MAL010071_V1_genomic.fna refseq_210622/bacteria/GCF_000666225.1/GCF_000666225.1_Myco_afri_MAL010074_V1_genomic.fna refseq_210622/bacteria/GCF_000666305.1/GCF_000666305.1_Myco_afri_MAL010081_V1_genomic.fna refseq_210622/bacteria/GCF_000666405.1/GCF_000666405.1_Myco_afri_MAL010099_V1_genomic.fna refseq_210622/bacteria/GCF_000666425.1/GCF_000666425.1_Myco_afri_MAL010100_V1_genomic.fna refseq_210622/bacteria/GCF_000666445.1/GCF_000666445.1_Myco_afri_MAL010102_V1_genomic.fna refseq_210622/bacteria/GCF_000666585.1/GCF_000666585.1_Myco_afri_MAL010111_V1_genomic.fna refseq_210622/bacteria/GCF_000666605.1/GCF_000666605.1_Myco_afri_MAL010112_V1_genomic.fna refseq_210622/bacteria/GCF_000666625.1/GCF_000666625.1_Myco_afri_MAL010118_V1_genomic.fna refseq_210622/bacteria/GCF_000666645.1/GCF_000666645.1_Myco_afri_MAL010120_V1_genomic.fna refseq_210622/bacteria/GCF_000666685.1/GCF_000666685.1_Myco_afri_MAL010123_V1_genomic.fna refseq_210622/bacteria/GCF_000666705.1/GCF_000666705.1_Myco_afri_MAL010128_V1_genomic.fna refseq_210622/bacteria/GCF_000666725.1/GCF_000666725.1_Myco_afri_MAL010129_V1_genomic.fna refseq_210622/bacteria/GCF_000666765.1/GCF_000666765.1_Myco_afri_MAL010131_V1_genomic.fna refseq_210622/bacteria/GCF_000666845.1/GCF_000666845.1_Myco_afri_MAL010137_V1_genomic.fna refseq_210622/bacteria/GCF_000666865.1/GCF_000666865.1_Myco_afri_MAL020107_V1_genomic.fna refseq_210622/bacteria/GCF_000666985.1/GCF_000666985.1_Myco_afri_MAL020135_V1_genomic.fna refseq_210622/bacteria/GCF_000667005.1/GCF_000667005.1_Myco_tube_MAL020136_V1_genomic.fna refseq_210622/bacteria/GCF_000667325.1/GCF_000667325.1_Myco_afri_MAL020173_V1_genomic.fna refseq_210622/bacteria/GCF_000667365.1/GCF_000667365.1_Myco_afri_MAL020176_V1_genomic.fna refseq_210622/bacteria/GCF_000667445.1/GCF_000667445.1_Myco_afri_MAL020185_V1_genomic.fna refseq_210622/bacteria/GCF_000667525.1/GCF_000667525.1_Myco_tube_MAL020193_V1_genomic.fna refseq_210622/bacteria/GCF_001593225.1/GCF_001593225.1_ASM159322v1_genomic.fna refseq_210622/bacteria/GCF_002982335.1/GCF_002982335.1_ASM298233v1_genomic.fna refseq_210622/bacteria/GCF_014489235.1/GCF_014489235.1_ASM1448923v1_genomic.fna refseq_210622/bacteria/GCF_014489295.1/GCF_014489295.1_ASM1448929v1_genomic.fna refseq_210622/bacteria/GCF_905183025.1/GCF_905183025.1_MAF01v1_genomic.fna refseq_210622/bacteria/GCF_905183075.1/GCF_905183075.1_MAF65v1_genomic.fna
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-5.13.0-51-generic-x86_64-with-debian-bullseye-sid (linux_64)
+  Python version: 3.7.6
+  CPUs number: 8
+
+Started: 2022-06-21 13:36:47
+
+Logging to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/quast.log
+NOTICE: Maximum number of threads is set to 2 (use --threads option to set it manually)
+
+CWD: /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022
+Main parameters: 
+  MODE: default, threads: 2, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  1  refseq_210622/bacteria/GCF_000253355.1/GCF_000253355.1_ASM25335v1_genomic.fna ==> GCF_000253355.1_ASM25335v1_genomic
+  2  refseq_210622/bacteria/GCF_000665865.1/GCF_000665865.1_Myco_afri_K85_V1_genomic.fna ==> GCF_000665865.1_Myco_afri_K85_V1_genomic
+  3  refseq_210622/bacteria/GCF_000666065.1/GCF_000666065.1_Myco_afri_MAL010084_V1_genomic.fna ==> GCF_000666065.1_Myco_afri_MAL010084_V1_genomic
+  4  refseq_210622/bacteria/GCF_000666125.1/GCF_000666125.1_Myco_afri_MAL020148_V1_genomic.fna ==> GCF_000666125.1_Myco_afri_MAL020148_V1_genomic
+  5  refseq_210622/bacteria/GCF_000666185.1/GCF_000666185.1_Myco_afri_MAL010070_V1_genomic.fna ==> GCF_000666185.1_Myco_afri_MAL010070_V1_genomic
+  6  refseq_210622/bacteria/GCF_000666205.1/GCF_000666205.1_Myco_afri_MAL010071_V1_genomic.fna ==> GCF_000666205.1_Myco_afri_MAL010071_V1_genomic
+  7  refseq_210622/bacteria/GCF_000666225.1/GCF_000666225.1_Myco_afri_MAL010074_V1_genomic.fna ==> GCF_000666225.1_Myco_afri_MAL010074_V1_genomic
+  8  refseq_210622/bacteria/GCF_000666305.1/GCF_000666305.1_Myco_afri_MAL010081_V1_genomic.fna ==> GCF_000666305.1_Myco_afri_MAL010081_V1_genomic
+  9  refseq_210622/bacteria/GCF_000666405.1/GCF_000666405.1_Myco_afri_MAL010099_V1_genomic.fna ==> GCF_000666405.1_Myco_afri_MAL010099_V1_genomic
+  10 refseq_210622/bacteria/GCF_000666425.1/GCF_000666425.1_Myco_afri_MAL010100_V1_genomic.fna ==> GCF_000666425.1_Myco_afri_MAL010100_V1_genomic
+  11 refseq_210622/bacteria/GCF_000666445.1/GCF_000666445.1_Myco_afri_MAL010102_V1_genomic.fna ==> GCF_000666445.1_Myco_afri_MAL010102_V1_genomic
+  12 refseq_210622/bacteria/GCF_000666585.1/GCF_000666585.1_Myco_afri_MAL010111_V1_genomic.fna ==> GCF_000666585.1_Myco_afri_MAL010111_V1_genomic
+  13 refseq_210622/bacteria/GCF_000666605.1/GCF_000666605.1_Myco_afri_MAL010112_V1_genomic.fna ==> GCF_000666605.1_Myco_afri_MAL010112_V1_genomic
+  14 refseq_210622/bacteria/GCF_000666625.1/GCF_000666625.1_Myco_afri_MAL010118_V1_genomic.fna ==> GCF_000666625.1_Myco_afri_MAL010118_V1_genomic
+  15 refseq_210622/bacteria/GCF_000666645.1/GCF_000666645.1_Myco_afri_MAL010120_V1_genomic.fna ==> GCF_000666645.1_Myco_afri_MAL010120_V1_genomic
+  16 refseq_210622/bacteria/GCF_000666685.1/GCF_000666685.1_Myco_afri_MAL010123_V1_genomic.fna ==> GCF_000666685.1_Myco_afri_MAL010123_V1_genomic
+  17 refseq_210622/bacteria/GCF_000666705.1/GCF_000666705.1_Myco_afri_MAL010128_V1_genomic.fna ==> GCF_000666705.1_Myco_afri_MAL010128_V1_genomic
+  18 refseq_210622/bacteria/GCF_000666725.1/GCF_000666725.1_Myco_afri_MAL010129_V1_genomic.fna ==> GCF_000666725.1_Myco_afri_MAL010129_V1_genomic
+  19 refseq_210622/bacteria/GCF_000666765.1/GCF_000666765.1_Myco_afri_MAL010131_V1_genomic.fna ==> GCF_000666765.1_Myco_afri_MAL010131_V1_genomic
+  20 refseq_210622/bacteria/GCF_000666845.1/GCF_000666845.1_Myco_afri_MAL010137_V1_genomic.fna ==> GCF_000666845.1_Myco_afri_MAL010137_V1_genomic
+  21 refseq_210622/bacteria/GCF_000666865.1/GCF_000666865.1_Myco_afri_MAL020107_V1_genomic.fna ==> GCF_000666865.1_Myco_afri_MAL020107_V1_genomic
+  22 refseq_210622/bacteria/GCF_000666985.1/GCF_000666985.1_Myco_afri_MAL020135_V1_genomic.fna ==> GCF_000666985.1_Myco_afri_MAL020135_V1_genomic
+  23 refseq_210622/bacteria/GCF_000667005.1/GCF_000667005.1_Myco_tube_MAL020136_V1_genomic.fna ==> GCF_000667005.1_Myco_tube_MAL020136_V1_genomic
+  24 refseq_210622/bacteria/GCF_000667325.1/GCF_000667325.1_Myco_afri_MAL020173_V1_genomic.fna ==> GCF_000667325.1_Myco_afri_MAL020173_V1_genomic
+  25 refseq_210622/bacteria/GCF_000667365.1/GCF_000667365.1_Myco_afri_MAL020176_V1_genomic.fna ==> GCF_000667365.1_Myco_afri_MAL020176_V1_genomic
+  26 refseq_210622/bacteria/GCF_000667445.1/GCF_000667445.1_Myco_afri_MAL020185_V1_genomic.fna ==> GCF_000667445.1_Myco_afri_MAL020185_V1_genomic
+  27 refseq_210622/bacteria/GCF_000667525.1/GCF_000667525.1_Myco_tube_MAL020193_V1_genomic.fna ==> GCF_000667525.1_Myco_tube_MAL020193_V1_genomic
+  28 refseq_210622/bacteria/GCF_001593225.1/GCF_001593225.1_ASM159322v1_genomic.fna ==> GCF_001593225.1_ASM159322v1_genomic
+  29 refseq_210622/bacteria/GCF_002982335.1/GCF_002982335.1_ASM298233v1_genomic.fna ==> GCF_002982335.1_ASM298233v1_genomic
+  30 refseq_210622/bacteria/GCF_014489235.1/GCF_014489235.1_ASM1448923v1_genomic.fna ==> GCF_014489235.1_ASM1448923v1_genomic
+  31 refseq_210622/bacteria/GCF_014489295.1/GCF_014489295.1_ASM1448929v1_genomic.fna ==> GCF_014489295.1_ASM1448929v1_genomic
+  32 refseq_210622/bacteria/GCF_905183025.1/GCF_905183025.1_MAF01v1_genomic.fna ==> GCF_905183025.1_MAF01v1_genomic
+  33 refseq_210622/bacteria/GCF_905183075.1/GCF_905183075.1_MAF65v1_genomic.fna ==> GCF_905183075.1_MAF65v1_genomic
+
+2022-06-21 13:36:50
+Running Basic statistics processor...
+  Contig files: 
+    1  GCF_000253355.1_ASM25335v1_genomic
+    2  GCF_000665865.1_Myco_afri_K85_V1_genomic
+    3  GCF_000666065.1_Myco_afri_MAL010084_V1_genomic
+    4  GCF_000666125.1_Myco_afri_MAL020148_V1_genomic
+    5  GCF_000666185.1_Myco_afri_MAL010070_V1_genomic
+    6  GCF_000666205.1_Myco_afri_MAL010071_V1_genomic
+    7  GCF_000666225.1_Myco_afri_MAL010074_V1_genomic
+    8  GCF_000666305.1_Myco_afri_MAL010081_V1_genomic
+    9  GCF_000666405.1_Myco_afri_MAL010099_V1_genomic
+    10 GCF_000666425.1_Myco_afri_MAL010100_V1_genomic
+    11 GCF_000666445.1_Myco_afri_MAL010102_V1_genomic
+    12 GCF_000666585.1_Myco_afri_MAL010111_V1_genomic
+    13 GCF_000666605.1_Myco_afri_MAL010112_V1_genomic
+    14 GCF_000666625.1_Myco_afri_MAL010118_V1_genomic
+    15 GCF_000666645.1_Myco_afri_MAL010120_V1_genomic
+    16 GCF_000666685.1_Myco_afri_MAL010123_V1_genomic
+    17 GCF_000666705.1_Myco_afri_MAL010128_V1_genomic
+    18 GCF_000666725.1_Myco_afri_MAL010129_V1_genomic
+    19 GCF_000666765.1_Myco_afri_MAL010131_V1_genomic
+    20 GCF_000666845.1_Myco_afri_MAL010137_V1_genomic
+    21 GCF_000666865.1_Myco_afri_MAL020107_V1_genomic
+    22 GCF_000666985.1_Myco_afri_MAL020135_V1_genomic
+    23 GCF_000667005.1_Myco_tube_MAL020136_V1_genomic
+    24 GCF_000667325.1_Myco_afri_MAL020173_V1_genomic
+    25 GCF_000667365.1_Myco_afri_MAL020176_V1_genomic
+    26 GCF_000667445.1_Myco_afri_MAL020185_V1_genomic
+    27 GCF_000667525.1_Myco_tube_MAL020193_V1_genomic
+    28 GCF_001593225.1_ASM159322v1_genomic
+    29 GCF_002982335.1_ASM298233v1_genomic
+    30 GCF_014489235.1_ASM1448923v1_genomic
+    31 GCF_014489295.1_ASM1448929v1_genomic
+    32 GCF_905183025.1_MAF01v1_genomic
+    33 GCF_905183075.1_MAF65v1_genomic
+  Calculating N50 and L50...
+    1  GCF_000253355.1_ASM25335v1_genomic, N50 = 4389314, L50 = 1, Total length = 4389314, GC % = 65.59, # N's per 100 kbp =  0.00
+    2  GCF_000665865.1_Myco_afri_K85_V1_genomic, N50 = 3926366, L50 = 1, Total length = 4403413, GC % = 65.56, # N's per 100 kbp =  412.23
+    3  GCF_000666065.1_Myco_afri_MAL010084_V1_genomic, N50 = 3918190, L50 = 1, Total length = 4394304, GC % = 65.59, # N's per 100 kbp =  202.65
+    4  GCF_000666125.1_Myco_afri_MAL020148_V1_genomic, N50 = 1290249, L50 = 2, Total length = 4389704, GC % = 65.60, # N's per 100 kbp =  80.32
+    5  GCF_000666185.1_Myco_afri_MAL010070_V1_genomic, N50 = 3912930, L50 = 1, Total length = 4384783, GC % = 65.58, # N's per 100 kbp =  15.17
+    6  GCF_000666205.1_Myco_afri_MAL010071_V1_genomic, N50 = 3911279, L50 = 1, Total length = 4385838, GC % = 65.59, # N's per 100 kbp =  68.79
+    7  GCF_000666225.1_Myco_afri_MAL010074_V1_genomic, N50 = 3935762, L50 = 1, Total length = 4400807, GC % = 65.60, # N's per 100 kbp =  289.95
+    8  GCF_000666305.1_Myco_afri_MAL010081_V1_genomic, N50 = 3918660, L50 = 1, Total length = 4389797, GC % = 65.58, # N's per 100 kbp =  148.66
+    9  GCF_000666405.1_Myco_afri_MAL010099_V1_genomic, N50 = 3917169, L50 = 1, Total length = 4388539, GC % = 65.58, # N's per 100 kbp =  42.34
+    10 GCF_000666425.1_Myco_afri_MAL010100_V1_genomic, N50 = 2513759, L50 = 1, Total length = 4427405, GC % = 65.58, # N's per 100 kbp =  214.82
+    11 GCF_000666445.1_Myco_afri_MAL010102_V1_genomic, N50 = 3921652, L50 = 1, Total length = 4392898, GC % = 65.59, # N's per 100 kbp =  142.84
+    12 GCF_000666585.1_Myco_afri_MAL010111_V1_genomic, N50 = 3076303, L50 = 1, Total length = 4387410, GC % = 65.58, # N's per 100 kbp =  23.70
+    13 GCF_000666605.1_Myco_afri_MAL010112_V1_genomic, N50 = 3925623, L50 = 1, Total length = 4396426, GC % = 65.57, # N's per 100 kbp =  297.47
+    14 GCF_000666625.1_Myco_afri_MAL010118_V1_genomic, N50 = 3939875, L50 = 1, Total length = 4416566, GC % = 65.59, # N's per 100 kbp =  260.18
+    15 GCF_000666645.1_Myco_afri_MAL010120_V1_genomic, N50 = 3907608, L50 = 1, Total length = 4380004, GC % = 65.59, # N's per 100 kbp =  87.03
+    16 GCF_000666685.1_Myco_afri_MAL010123_V1_genomic, N50 = 3914690, L50 = 1, Total length = 4385125, GC % = 65.59, # N's per 100 kbp =  28.30
+    17 GCF_000666705.1_Myco_afri_MAL010128_V1_genomic, N50 = 4351019, L50 = 1, Total length = 4384811, GC % = 65.58, # N's per 100 kbp =  88.35
+    18 GCF_000666725.1_Myco_afri_MAL010129_V1_genomic, N50 = 3743364, L50 = 1, Total length = 4403369, GC % = 65.57, # N's per 100 kbp =  447.18
+    19 GCF_000666765.1_Myco_afri_MAL010131_V1_genomic, N50 = 2965170, L50 = 1, Total length = 4410558, GC % = 65.59, # N's per 100 kbp =  347.55
+    20 GCF_000666845.1_Myco_afri_MAL010137_V1_genomic, N50 = 3919161, L50 = 1, Total length = 4390721, GC % = 65.58, # N's per 100 kbp =  123.94
+    21 GCF_000666865.1_Myco_afri_MAL020107_V1_genomic, N50 = 4342852, L50 = 1, Total length = 4381902, GC % = 65.59, # N's per 100 kbp =  51.37
+    22 GCF_000666985.1_Myco_afri_MAL020135_V1_genomic, N50 = 1837703, L50 = 2, Total length = 4388747, GC % = 65.59, # N's per 100 kbp =  79.25
+    23 GCF_000667005.1_Myco_tube_MAL020136_V1_genomic, N50 = 3926697, L50 = 1, Total length = 4397782, GC % = 65.58, # N's per 100 kbp =  257.70
+    24 GCF_000667325.1_Myco_afri_MAL020173_V1_genomic, N50 = 3911874, L50 = 1, Total length = 4383982, GC % = 65.58, # N's per 100 kbp =  60.22
+    25 GCF_000667365.1_Myco_afri_MAL020176_V1_genomic, N50 = 2491844, L50 = 1, Total length = 4385261, GC % = 65.59, # N's per 100 kbp =  35.92
+    26 GCF_000667445.1_Myco_afri_MAL020185_V1_genomic, N50 = 3920106, L50 = 1, Total length = 4395062, GC % = 65.58, # N's per 100 kbp =  182.48
+    27 GCF_000667525.1_Myco_tube_MAL020193_V1_genomic, N50 = 3910994, L50 = 1, Total length = 4387100, GC % = 65.55, # N's per 100 kbp =  408.72
+    28 GCF_001593225.1_ASM159322v1_genomic, N50 = 4493502, L50 = 1, Total length = 4493502, GC % = 65.59, # N's per 100 kbp =  3324.62
+    29 GCF_002982335.1_ASM298233v1_genomic, N50 = 102781, L50 = 13, Total length = 4341512, GC % = 65.55, # N's per 100 kbp =  14.81
+    30 GCF_014489235.1_ASM1448923v1_genomic, N50 = 77061, L50 = 19, Total length = 4349370, GC % = 65.56, # N's per 100 kbp =  73.71
+    31 GCF_014489295.1_ASM1448929v1_genomic, N50 = 114351, L50 = 13, Total length = 4362719, GC % = 65.60, # N's per 100 kbp =  65.10
+    32 GCF_905183025.1_MAF01v1_genomic, N50 = 4366809, L50 = 1, Total length = 4366809, GC % = 65.59, # N's per 100 kbp =  173.56
+    33 GCF_905183075.1_MAF65v1_genomic, N50 = 4374993, L50 = 1, Total length = 4374993, GC % = 65.60, # N's per 100 kbp =  159.63
+  Drawing Nx plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GC_content_plot.pdf
+  Drawing GCF_000253355.1_ASM25335v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000253355.1_ASM25335v1_genomic_GC_content_plot.pdf
+  Drawing GCF_000665865.1_Myco_afri_K85_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000665865.1_Myco_afri_K85_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666065.1_Myco_afri_MAL010084_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666065.1_Myco_afri_MAL010084_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666125.1_Myco_afri_MAL020148_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666125.1_Myco_afri_MAL020148_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666185.1_Myco_afri_MAL010070_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666185.1_Myco_afri_MAL010070_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666205.1_Myco_afri_MAL010071_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666205.1_Myco_afri_MAL010071_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666225.1_Myco_afri_MAL010074_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666225.1_Myco_afri_MAL010074_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666305.1_Myco_afri_MAL010081_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666305.1_Myco_afri_MAL010081_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666405.1_Myco_afri_MAL010099_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666405.1_Myco_afri_MAL010099_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666425.1_Myco_afri_MAL010100_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666425.1_Myco_afri_MAL010100_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666445.1_Myco_afri_MAL010102_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666445.1_Myco_afri_MAL010102_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666585.1_Myco_afri_MAL010111_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666585.1_Myco_afri_MAL010111_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666605.1_Myco_afri_MAL010112_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666605.1_Myco_afri_MAL010112_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666625.1_Myco_afri_MAL010118_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666625.1_Myco_afri_MAL010118_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666645.1_Myco_afri_MAL010120_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666645.1_Myco_afri_MAL010120_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666685.1_Myco_afri_MAL010123_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666685.1_Myco_afri_MAL010123_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666705.1_Myco_afri_MAL010128_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666705.1_Myco_afri_MAL010128_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666725.1_Myco_afri_MAL010129_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666725.1_Myco_afri_MAL010129_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666765.1_Myco_afri_MAL010131_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666765.1_Myco_afri_MAL010131_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666845.1_Myco_afri_MAL010137_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666845.1_Myco_afri_MAL010137_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666865.1_Myco_afri_MAL020107_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666865.1_Myco_afri_MAL020107_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000666985.1_Myco_afri_MAL020135_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000666985.1_Myco_afri_MAL020135_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000667005.1_Myco_tube_MAL020136_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000667005.1_Myco_tube_MAL020136_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000667325.1_Myco_afri_MAL020173_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000667325.1_Myco_afri_MAL020173_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000667365.1_Myco_afri_MAL020176_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000667365.1_Myco_afri_MAL020176_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000667445.1_Myco_afri_MAL020185_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000667445.1_Myco_afri_MAL020185_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_000667525.1_Myco_tube_MAL020193_V1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_000667525.1_Myco_tube_MAL020193_V1_genomic_GC_content_plot.pdf
+  Drawing GCF_001593225.1_ASM159322v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_001593225.1_ASM159322v1_genomic_GC_content_plot.pdf
+  Drawing GCF_002982335.1_ASM298233v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_002982335.1_ASM298233v1_genomic_GC_content_plot.pdf
+  Drawing GCF_014489235.1_ASM1448923v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_014489235.1_ASM1448923v1_genomic_GC_content_plot.pdf
+  Drawing GCF_014489295.1_ASM1448929v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_014489295.1_ASM1448929v1_genomic_GC_content_plot.pdf
+  Drawing GCF_905183025.1_MAF01v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_905183025.1_MAF01v1_genomic_GC_content_plot.pdf
+  Drawing GCF_905183075.1_MAF65v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/basic_stats/GCF_905183075.1_MAF65v1_genomic_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2022-06-21 13:37:07
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating PDF with all tables and plots...
+Done
+
+2022-06-21 13:37:11
+RESULTS:
+  Text versions of total report are saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/report.html
+  PDF version (tables and plots) is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/report.pdf
+  Log is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/quast/quast.log
+
+Finished: 2022-06-21 13:37:11
+Elapsed time: 0:00:23.735043
+NOTICEs: 2; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
