@@ -14,4 +14,7 @@ parametros <- parametros[-1,]
 parametros$Contigs <- as.numeric(parametros$Contigs)
 parametros$GenomeLength <- as.numeric(parametros$GenomeLength)
 parametros$GC <- as.numeric(parametros$GC)
-write.table(parametros, file='metadatos.tsv', quote=FALSE, sep='\t', row.names = FALSE)
+
+nombres<- read.delim("nombre.txt", sep= " ",header= FALSE, col.names = c("Assembly", "Genus", "Species", "Variant", "VariantName", "Strain", "Strain2", "Strain3", "Strain4") )
+metadatos <- cbind(parametros, nombres)
+write.table(metadatos, file='metadatos.tsv', quote=FALSE, sep='\t', row.names = FALSE)

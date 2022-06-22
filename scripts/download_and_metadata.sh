@@ -20,14 +20,6 @@ mv refseq/ refseq_"$1"
 echo "Decompressing files"
 gunzip refseq_"$1"/bacteria/GCF_*/*.gz
 
-#Run Quast
-echo "Running Quast"
-quast -o quast/ --space-efficient refseq_"$1"/bacteria/GCF_*/*.fna
-
-#Run quast_to_metadata.tsv
-echo "Creating metadata table"
-Rscript scripts/quast_a_metadatos.R
-
 #Print the name of every genome
 #WARNING: Some genomes may have extra strings like ", complete genome" along the complete name
 
@@ -35,12 +27,17 @@ grep "DEFINITION" refseq_"$1"/bacteria/GCF_*/*gbff | uniq | while read line
 	do 
 		assembly=$(echo $line | cut -d'/' -f3)
 		taxonomy=$(echo $line | cut -d'/' -f4| cut -d' ' -f1 --complement)
-		echo $assembly $taxonomy; 
+		echo $assembly $taxonomy
 	done > nombre.txt
 
+
+#Run Quast
+echo "Running Quast"
+quast -o quast/ --space-efficient refseq_"$1"/bacteria/GCF_*/*.fna
+
 #Run quast_to_metadata.tsv
-echo "Adding species name to metadata table"
-Rscript scripts/nombre_a_metadatos.R
+echo "Creating metadata table"
+Rscript scripts/quast_a_metadatos.R
 
 #Print name of file with 
 #for folder in GCF*
