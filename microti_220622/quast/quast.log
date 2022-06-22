@@ -1,0 +1,85 @@
+/home/claudia/anaconda3/bin/quast -o quast/ --space-efficient raw_data/GCF_002982215.1/GCF_002982215.1_ASM298221v1_genomic.fna raw_data/GCF_904810325.1/GCF_904810325.1_MmicOV254_genomic.fna raw_data/GCF_904810335.1/GCF_904810335.1_MmicATCC35782_genomic.fna raw_data/GCF_904810345.1/GCF_904810345.1_MmicMaus3_genomic.fna raw_data/GCF_904810355.1/GCF_904810355.1_MmicMaus4_genomic.fna raw_data/GCF_904810365.1/GCF_904810365.1_Mmic942272_genomic.fna
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-5.13.0-51-generic-x86_64-with-debian-bullseye-sid (linux_64)
+  Python version: 3.7.6
+  CPUs number: 8
+
+Started: 2022-06-22 13:15:26
+
+Logging to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/quast.log
+NOTICE: Maximum number of threads is set to 2 (use --threads option to set it manually)
+
+CWD: /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622
+Main parameters: 
+  MODE: default, threads: 2, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  1  raw_data/GCF_002982215.1/GCF_002982215.1_ASM298221v1_genomic.fna ==> GCF_002982215.1_ASM298221v1_genomic
+  2  raw_data/GCF_904810325.1/GCF_904810325.1_MmicOV254_genomic.fna ==> GCF_904810325.1_MmicOV254_genomic
+  3  raw_data/GCF_904810335.1/GCF_904810335.1_MmicATCC35782_genomic.fna ==> GCF_904810335.1_MmicATCC35782_genomic
+  4  raw_data/GCF_904810345.1/GCF_904810345.1_MmicMaus3_genomic.fna ==> GCF_904810345.1_MmicMaus3_genomic
+  5  raw_data/GCF_904810355.1/GCF_904810355.1_MmicMaus4_genomic.fna ==> GCF_904810355.1_MmicMaus4_genomic
+  6  raw_data/GCF_904810365.1/GCF_904810365.1_Mmic942272_genomic.fna ==> GCF_904810365.1_Mmic942272_genomic
+
+2022-06-22 13:15:27
+Running Basic statistics processor...
+  Contig files: 
+    1  GCF_002982215.1_ASM298221v1_genomic
+    2  GCF_904810325.1_MmicOV254_genomic
+    3  GCF_904810335.1_MmicATCC35782_genomic
+    4  GCF_904810345.1_MmicMaus3_genomic
+    5  GCF_904810355.1_MmicMaus4_genomic
+    6  GCF_904810365.1_Mmic942272_genomic
+  Calculating N50 and L50...
+    1  GCF_002982215.1_ASM298221v1_genomic, N50 = 27952, L50 = 45, Total length = 4241659, GC % = 65.34, # N's per 100 kbp =  0.50
+    2  GCF_904810325.1_MmicOV254_genomic, N50 = 4369915, L50 = 1, Total length = 4369915, GC % = 65.63, # N's per 100 kbp =  0.00
+    3  GCF_904810335.1_MmicATCC35782_genomic, N50 = 4366549, L50 = 1, Total length = 4366549, GC % = 65.63, # N's per 100 kbp =  0.00
+    4  GCF_904810345.1_MmicMaus3_genomic, N50 = 4382575, L50 = 1, Total length = 4382575, GC % = 65.62, # N's per 100 kbp =  0.00
+    5  GCF_904810355.1_MmicMaus4_genomic, N50 = 4385022, L50 = 1, Total length = 4385022, GC % = 65.62, # N's per 100 kbp =  0.00
+    6  GCF_904810365.1_Mmic942272_genomic, N50 = 4384561, L50 = 1, Total length = 4384561, GC % = 65.62, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GC_content_plot.pdf
+  Drawing GCF_002982215.1_ASM298221v1_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_002982215.1_ASM298221v1_genomic_GC_content_plot.pdf
+  Drawing GCF_904810325.1_MmicOV254_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_904810325.1_MmicOV254_genomic_GC_content_plot.pdf
+  Drawing GCF_904810335.1_MmicATCC35782_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_904810335.1_MmicATCC35782_genomic_GC_content_plot.pdf
+  Drawing GCF_904810345.1_MmicMaus3_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_904810345.1_MmicMaus3_genomic_GC_content_plot.pdf
+  Drawing GCF_904810355.1_MmicMaus4_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_904810355.1_MmicMaus4_genomic_GC_content_plot.pdf
+  Drawing GCF_904810365.1_Mmic942272_genomic GC content plot...
+    saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/basic_stats/GCF_904810365.1_Mmic942272_genomic_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2022-06-22 13:15:30
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating PDF with all tables and plots...
+Done
+
+2022-06-22 13:15:31
+RESULTS:
+  Text versions of total report are saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/report.html
+  PDF version (tables and plots) is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/report.pdf
+  Log is saved to /home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/microti_220622/quast/quast.log
+
+Finished: 2022-06-22 13:15:31
+Elapsed time: 0:00:04.685992
+NOTICEs: 2; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

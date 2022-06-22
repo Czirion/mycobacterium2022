@@ -1,0 +1,14 @@
+c304fd8b39e7abe55247cc1c591eef1e  ./annotation_hashes.txt
+9e01f660f22860a07746074c027d29f8  ./GCF_904810345.1_MmicMaus3_assembly_report.txt
+4dff827d93ca8cf436d9a0c69a99376a  ./GCF_904810345.1_MmicMaus3_assembly_stats.txt
+0cc45cb7c16dfa0b0e5ff04ede34a521  ./GCF_904810345.1_MmicMaus3_cds_from_genomic.fna.gz
+3ca3bc9f75ef57adcb1f496a84d827d0  ./GCF_904810345.1_MmicMaus3_feature_count.txt.gz
+e2aec15175130fc6b451c4aea1a26804  ./GCF_904810345.1_MmicMaus3_feature_table.txt.gz
+f712d6764bd5a122acf58768b7095056  ./GCF_904810345.1_MmicMaus3_genomic.fna.gz
+edf45ee29a78f843ca866fd089fbd72b  ./GCF_904810345.1_MmicMaus3_genomic.gbff.gz
+0b8a0e5df8217e16a060f66bfc49864e  ./GCF_904810345.1_MmicMaus3_genomic.gff.gz
+f2ffa06b916431d7d4723ef324db1ef8  ./GCF_904810345.1_MmicMaus3_genomic.gtf.gz
+45f9cbf5bbe4b260ff1831380c603e80  ./GCF_904810345.1_MmicMaus3_protein.faa.gz
+702f3a55ce0174c7a1a83faa91f6a76d  ./GCF_904810345.1_MmicMaus3_protein.gpff.gz
+82581bdbf0684512c94f3cad93b2195a  ./GCF_904810345.1_MmicMaus3_rna_from_genomic.fna.gz
+6ea6271ad2d615d9eb90d6f2d74b73c3  ./GCF_904810345.1_MmicMaus3_translated_cds.faa.gz
