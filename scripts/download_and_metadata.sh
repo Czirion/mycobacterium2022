@@ -30,9 +30,8 @@ Rscript scripts/quast_a_metadatos.R
 
 #Print the name of every genome
 #WARNING: Some genomes may have extra strings like ", complete genome" along the complete name
-#grep "DEFINITION" GCF_*/*.gbff | uniq
 
-
+grep "DEFINITION" GCF_*/*gbff | uniq | cut -d'/' -f2 | cut -d' ' -f1,2 --complement > ../../nombre.txt
 
 
 
