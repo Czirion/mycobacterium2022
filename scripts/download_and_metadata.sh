@@ -20,16 +20,22 @@ mv refseq/ refseq_"$1"
 echo "Decompressing files"
 gunzip refseq_"$1"/bacteria/GCF_*/*.gz
 
-#Print the name of every genome
-#WARNING: Some genomes may have extra strings like ", complete genome" along the complete name
+# 
+#The DEFINITION field has the name of the organism (Genus species variand strain) but sometimes also includes extra information about the sequence, like ",complete genome"
 
-grep "DEFINITION" refseq_"$1"/bacteria/GCF_*/*gbff | uniq | while read line
-	do 
-		assembly=$(echo $line | cut -d'/' -f3)
-		taxonomy=$(echo $line | cut -d'/' -f4| cut -d' ' -f1 --complement)
-		echo $assembly $taxonomy
-	done > nombre.txt
 
+echo -e "Assembly""\t"Definition"\t"GenesTotal"\t"CDSsTotal"\t"GenesCoding"\t""CDSsProtein" > gbk_parameters.tsv
+
+ls refseq_"$1"/bacteria/GCF_*/*.gbff | while read line;
+do 
+assembly=$(echo $line | cut -d'/' -f3);
+taxonomy=$(grep "DEFINITION" $line | uniq | cut -d' ' -f1,2 --complement)
+total_genes=$(grep "Genes (total)" $line | grep "Pseudo" -v | uniq | rev | cut -d' ' -f1 | rev);
+total_cds=$(grep "CDSs (total)" $line | uniq | rev | cut -d' ' -f1 | rev );
+coding_genes=$(grep "Genes (coding)" $line | uniq | rev | cut -d' ' -f1 | rev);
+protein_cds=$(grep "CDSs (with protein)" $line | uniq | rev | cut -d' ' -f1 | rev);
+echo -e $assembly"\t"$taxonomy"\t"$total_genes"\t"$total_cds"\t"$coding_genes"\t"$protein_cds >> gbk_parameters.tsv;
+done
 
 #Run Quast
 echo "Running Quast"
@@ -39,16 +45,5 @@ quast -o quast/ --space-efficient refseq_"$1"/bacteria/GCF_*/*.fna
 echo "Creating metadata table"
 Rscript scripts/quast_a_metadatos.R
 
-#Print name of file with 
-#for folder in GCF*
-#	do
-#		filename=$(echo $folder/*.gbff)
-#		total_genes=$(grep "Genes (total)" $folder/*gbff | grep "Pseudo" -v | uniq | cut -d':' -f4)
-#		echo $filename $total_genes
-#	done | cut -d'/' -f2
-#	 Genes (total)                     :: 4,107
-#            CDSs (total)                      :: 4,056
-#           Genes (coding)                    :: 3,851
-#            CDSs (with protein)
-#
-#            Genes (total) :: 4,097
+
+
