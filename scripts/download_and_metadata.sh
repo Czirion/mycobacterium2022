@@ -20,10 +20,8 @@ mv refseq/ refseq_"$1"
 echo "Decompressing files"
 gunzip refseq_"$1"/bacteria/GCF_*/*.gz
 
-# 
+#Create a table with all the needed parameters taken from the gbff
 #The DEFINITION field has the name of the organism (Genus species variand strain) but sometimes also includes extra information about the sequence, like ",complete genome"
-
-
 echo -e "Assembly""\t"Definition"\t"GenesTotal"\t"CDSsTotal"\t"GenesCoding"\t""CDSsProtein" > gbk_parameters.tsv
 
 ls refseq_"$1"/bacteria/GCF_*/*.gbff | while read line;
@@ -43,7 +41,8 @@ quast -o quast/ --space-efficient refseq_"$1"/bacteria/GCF_*/*.fna
 
 #Run quast_to_metadata.tsv
 echo "Creating metadata table"
-Rscript scripts/quast_a_metadatos.R
+Rscript scripts/crear_metadatos.R
 
-
+#Remove gbk_parameters.tsv
+rm gbk_parameters.tsv
 
