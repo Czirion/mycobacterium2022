@@ -1,34 +1,34 @@
-Filename	Contigs	GenomeLength	GC
-GCF_000253355.1_ASM25335v1_genomic	1	4389314	65.59
-GCF_000665865.1_Myco_afri_K85_V1_genomic	6	4403413	65.56
-GCF_000666065.1_Myco_afri_MAL010084_V1_genomic	4	4394304	65.59
-GCF_000666125.1_Myco_afri_MAL020148_V1_genomic	3	4389704	65.6
-GCF_000666185.1_Myco_afri_MAL010070_V1_genomic	5	4384783	65.58
-GCF_000666205.1_Myco_afri_MAL010071_V1_genomic	4	4385838	65.59
-GCF_000666225.1_Myco_afri_MAL010074_V1_genomic	4	4400807	65.6
-GCF_000666305.1_Myco_afri_MAL010081_V1_genomic	2	4389797	65.58
-GCF_000666405.1_Myco_afri_MAL010099_V1_genomic	2	4388539	65.58
-GCF_000666425.1_Myco_afri_MAL010100_V1_genomic	17	4427405	65.58
-GCF_000666445.1_Myco_afri_MAL010102_V1_genomic	3	4392898	65.59
-GCF_000666585.1_Myco_afri_MAL010111_V1_genomic	6	4387410	65.58
-GCF_000666605.1_Myco_afri_MAL010112_V1_genomic	3	4396426	65.57
-GCF_000666625.1_Myco_afri_MAL010118_V1_genomic	5	4416566	65.59
-GCF_000666645.1_Myco_afri_MAL010120_V1_genomic	3	4380004	65.59
-GCF_000666685.1_Myco_afri_MAL010123_V1_genomic	2	4385125	65.59
-GCF_000666705.1_Myco_afri_MAL010128_V1_genomic	2	4384811	65.58
-GCF_000666725.1_Myco_afri_MAL010129_V1_genomic	3	4403369	65.57
-GCF_000666765.1_Myco_afri_MAL010131_V1_genomic	3	4410558	65.59
-GCF_000666845.1_Myco_afri_MAL010137_V1_genomic	4	4390721	65.58
-GCF_000666865.1_Myco_afri_MAL020107_V1_genomic	2	4381902	65.59
-GCF_000666985.1_Myco_afri_MAL020135_V1_genomic	4	4388747	65.59
-GCF_000667005.1_Myco_tube_MAL020136_V1_genomic	4	4397782	65.58
-GCF_000667325.1_Myco_afri_MAL020173_V1_genomic	2	4383982	65.58
-GCF_000667365.1_Myco_afri_MAL020176_V1_genomic	2	4385261	65.59
-GCF_000667445.1_Myco_afri_MAL020185_V1_genomic	2	4395062	65.58
-GCF_000667525.1_Myco_tube_MAL020193_V1_genomic	7	4387100	65.55
-GCF_001593225.1_ASM159322v1_genomic	1	4493502	65.59
-GCF_002982335.1_ASM298233v1_genomic	114	4341512	65.55
-GCF_014489235.1_ASM1448923v1_genomic	160	4349370	65.56
-GCF_014489295.1_ASM1448929v1_genomic	97	4362719	65.6
-GCF_905183025.1_MAF01v1_genomic	1	4366809	65.59
-GCF_905183075.1_MAF65v1_genomic	1	4374993	65.6
+Filename	Contigs	GenomeLength	GC	Assembly	Genus	Species	Variant	VariantName	Strain	Strain2	Strain3	Strain4
+GCF_000253355.1_ASM25335v1_genomic	1	4389314	65.59	GCF_000253355.1	Mycobacterium	tuberculosis	variant	africanum	GM041182,	complete	NA	NA
+GCF_000665865.1_Myco_afri_K85_V1_genomic	6	4403413	65.56	GCF_000665865.1	Mycobacterium	tuberculosis	variant	africanum	K85		NA	NA
+GCF_000666065.1_Myco_afri_MAL010084_V1_genomic	4	4394304	65.59	GCF_000666065.1	Mycobacterium	tuberculosis	variant	africanum	strain	MAL010084	NA	NA
+GCF_000666125.1_Myco_afri_MAL020148_V1_genomic	3	4389704	65.6	GCF_000666125.1	Mycobacterium	tuberculosis	variant	africanum	strain	MAL020148	NA	NA
+GCF_000666185.1_Myco_afri_MAL010070_V1_genomic	5	4384783	65.58	GCF_000666185.1	Mycobacterium	tuberculosis	variant	africanum	MAL010070		NA	NA
+GCF_000666205.1_Myco_afri_MAL010071_V1_genomic	4	4385838	65.59	GCF_000666205.1	Mycobacterium	tuberculosis	variant	africanum	MAL010071		NA	NA
+GCF_000666225.1_Myco_afri_MAL010074_V1_genomic	4	4400807	65.6	GCF_000666225.1	Mycobacterium	tuberculosis	variant	africanum	MAL010074		NA	NA
+GCF_000666305.1_Myco_afri_MAL010081_V1_genomic	2	4389797	65.58	GCF_000666305.1	Mycobacterium	tuberculosis	variant	africanum	MAL010081		NA	NA
+GCF_000666405.1_Myco_afri_MAL010099_V1_genomic	2	4388539	65.58	GCF_000666405.1	Mycobacterium	tuberculosis	variant	africanum	MAL010099		NA	NA
+GCF_000666425.1_Myco_afri_MAL010100_V1_genomic	17	4427405	65.58	GCF_000666425.1	Mycobacterium	tuberculosis	variant	africanum	MAL010100		NA	NA
+GCF_000666445.1_Myco_afri_MAL010102_V1_genomic	3	4392898	65.59	GCF_000666445.1	Mycobacterium	tuberculosis	variant	africanum	MAL010102		NA	NA
+GCF_000666585.1_Myco_afri_MAL010111_V1_genomic	6	4387410	65.58	GCF_000666585.1	Mycobacterium	tuberculosis	variant	africanum	MAL010111		NA	NA
+GCF_000666605.1_Myco_afri_MAL010112_V1_genomic	3	4396426	65.57	GCF_000666605.1	Mycobacterium	tuberculosis	variant	africanum	MAL010112		NA	NA
+GCF_000666625.1_Myco_afri_MAL010118_V1_genomic	5	4416566	65.59	GCF_000666625.1	Mycobacterium	tuberculosis	variant	africanum	MAL010118		NA	NA
+GCF_000666645.1_Myco_afri_MAL010120_V1_genomic	3	4380004	65.59	GCF_000666645.1	Mycobacterium	tuberculosis	variant	africanum	MAL010120		NA	NA
+GCF_000666685.1_Myco_afri_MAL010123_V1_genomic	2	4385125	65.59	GCF_000666685.1	Mycobacterium	tuberculosis	variant	africanum	MAL010123		NA	NA
+GCF_000666705.1_Myco_afri_MAL010128_V1_genomic	2	4384811	65.58	GCF_000666705.1	Mycobacterium	tuberculosis	variant	africanum	MAL010128		NA	NA
+GCF_000666725.1_Myco_afri_MAL010129_V1_genomic	3	4403369	65.57	GCF_000666725.1	Mycobacterium	tuberculosis	variant	africanum	MAL010129		NA	NA
+GCF_000666765.1_Myco_afri_MAL010131_V1_genomic	3	4410558	65.59	GCF_000666765.1	Mycobacterium	tuberculosis	variant	africanum	MAL010131		NA	NA
+GCF_000666845.1_Myco_afri_MAL010137_V1_genomic	4	4390721	65.58	GCF_000666845.1	Mycobacterium	tuberculosis	variant	africanum	MAL010137		NA	NA
+GCF_000666865.1_Myco_afri_MAL020107_V1_genomic	2	4381902	65.59	GCF_000666865.1	Mycobacterium	tuberculosis	variant	africanum	MAL020107		NA	NA
+GCF_000666985.1_Myco_afri_MAL020135_V1_genomic	4	4388747	65.59	GCF_000666985.1	Mycobacterium	tuberculosis	variant	africanum	MAL020135		NA	NA
+GCF_000667005.1_Myco_tube_MAL020136_V1_genomic	4	4397782	65.58	GCF_000667005.1	Mycobacterium	tuberculosis	variant	africanum	MAL020136		NA	NA
+GCF_000667325.1_Myco_afri_MAL020173_V1_genomic	2	4383982	65.58	GCF_000667325.1	Mycobacterium	tuberculosis	variant	africanum	MAL020173		NA	NA
+GCF_000667365.1_Myco_afri_MAL020176_V1_genomic	2	4385261	65.59	GCF_000667365.1	Mycobacterium	tuberculosis	variant	africanum	MAL020176		NA	NA
+GCF_000667445.1_Myco_afri_MAL020185_V1_genomic	2	4395062	65.58	GCF_000667445.1	Mycobacterium	tuberculosis	variant	africanum	MAL020185		NA	NA
+GCF_000667525.1_Myco_tube_MAL020193_V1_genomic	7	4387100	65.55	GCF_000667525.1	Mycobacterium	tuberculosis	variant	africanum	MAL020193		NA	NA
+GCF_001593225.1_ASM159322v1_genomic	1	4493502	65.59	GCF_001593225.1	Mycobacterium	tuberculosis	variant	africanum	strain	UT307	NA	NA
+GCF_002982335.1_ASM298233v1_genomic	114	4341512	65.55	GCF_002982335.1	Mycobacterium	tuberculosis	variant	africanum	strain	ATCC	25420	NA
+GCF_014489235.1_ASM1448923v1_genomic	160	4349370	65.56	GCF_014489235.1	Mycobacterium	tuberculosis	variant	africanum	strain	M008470	NA	NA
+GCF_014489295.1_ASM1448929v1_genomic	97	4362719	65.6	GCF_014489295.1	Mycobacterium	tuberculosis	variant	africanum	strain	NLA000017458	NA	NA
+GCF_905183025.1_MAF01v1_genomic	1	4366809	65.59	GCF_905183025.1	Mycobacterium	tuberculosis	variant	africanum	isolate	Various	NA	NA
+GCF_905183075.1_MAF65v1_genomic	1	4374993	65.6	GCF_905183075.1	Mycobacterium	tuberculosis	variant	africanum	isolate	Various	NA	NA

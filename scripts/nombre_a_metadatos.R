@@ -1,4 +1,6 @@
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 setwd(getwd())
 metadatos<- read.delim("metadatos.tsv", sep = "\t",header = TRUE)
-nombres<- read.delim("nombre.txt", sep= " ", header = FALSE)
+nombres<- read.delim("nombre.txt", sep= " ",header= FALSE, col.names = c("Assembly", "Genus", "Species", "Variant", "VariantName", "Strain", "Strain2", "Strain3", "Strain4") )
+metadatos <- cbind(metadatos, nombres)
+write.table(metadatos, file='metadatos.tsv', quote=FALSE, sep='\t', row.names = FALSE)

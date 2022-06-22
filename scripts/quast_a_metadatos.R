@@ -3,7 +3,7 @@
 #Must be used from the folder that has the quast/ output folder 
 # and where the metadata.tsv will be created
 
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 setwd(getwd())
 parametros <- read.delim("quast/report.tsv", sep = "\t",header = FALSE)
 parametros <- t(parametros) #transpose
