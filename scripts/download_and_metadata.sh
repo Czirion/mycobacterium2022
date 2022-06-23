@@ -49,7 +49,7 @@ done
 
 #Run Quast
 echo "Running Quast"
-quast -o quast/ --space-efficient raw_data/GCF_*/*.fna
+quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 
 #Run quast_to_metadata.tsv
 echo "Creating metadata table"
