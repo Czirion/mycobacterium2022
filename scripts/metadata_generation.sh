@@ -1,23 +1,18 @@
-## Download, exploration and metadate generation script
+## Script for running Quast and create a metadata table from Quast results and parameters taken from GBFFs
 
 #Usage:
-# Locate yourself in the global project folder where the scripts/download_explore.sh is located
-# bash scripts/download_and_metadata.sh arguments
+# Locate yourself in the global project folder where the scripts/metadata_generation.sh is located
+# bash scripts/metadata_generation.sh arguments
 # Positional arguments:
 # 1: species abreviation for foldername
 # 2: date in only numbers
-# 3: formats to download (coma separated without spaces) surrounded by double ticks
-# 4: lineaje name for NCBI download surrounded by double ticks
 
 #Requisites:
 # - Have Quast installed
 # - Have R installed
 # - Put the quast_a_metadatos.R script in the scripts/ folder
+# - Review your download is correct before running this script
 
-#Download Mycobacterium tuberculosis variant africanum in genebank and fasta format
-
-
-ncbi-genome-download -P -r 3 -F "$3" --genera "$4" bacteria
 
 # Change foldername
 echo "Renaming folders"
