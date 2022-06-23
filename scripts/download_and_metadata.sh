@@ -26,8 +26,8 @@ mv "$1"_"$2"/bacteria/ "$1"_"$2"/raw_data/
 
 
 #Decompress
-echo "Decompressing files"
-gunzip "$1"_"$2"/raw_data/GCF_*/*.gz
+echo "Decompressing GBFF files"
+gunzip "$1"_"$2"/raw_data/GCF_*/*.gbff.gz
 
 cd "$1"_"$2"/
 
@@ -46,7 +46,6 @@ coding_genes=$(grep "Genes (coding)" $line | uniq | rev | cut -d' ' -f1 | rev);
 protein_cds=$(grep "CDSs (with protein)" $line | uniq | rev | cut -d' ' -f1 | rev);
 echo -e $assembly"\t"$taxonomy"\t"$total_genes"\t"$total_cds"\t"$coding_genes"\t"$protein_cds >> gbk_parameters.tsv;
 done
-
 
 #Run Quast
 echo "Running Quast"
