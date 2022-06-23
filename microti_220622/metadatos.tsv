@@ -1,7 +1,0 @@
-Filename	Assembly	Definition	Contigs	GenomeLength	GC	GenesTotal	CDSsTotal	GenesCoding	CDSsProtein
-GCF_002982215.1_ASM298221v1_genomic	GCF_002982215.1	Mycobacterium tuberculosis variant microti strain ATCC 19422	258	4241659	65.34	4217	4166	3812	3812
-GCF_904810325.1_MmicOV254_genomic	GCF_904810325.1	Mycobacterium tuberculosis variant microti OV254 isolate vole	1	4369915	65.63	4046	3995	3805	3805
-GCF_904810335.1_MmicATCC35782_genomic	GCF_904810335.1	Mycobacterium tuberculosis variant microti strain ATCC 35782	1	4366549	65.63	4093	4042	3807	3807
-GCF_904810345.1_MmicMaus3_genomic	GCF_904810345.1	Mycobacterium tuberculosis variant microti strain Maus III isolate	1	4382575	65.62	4106	4055	3827	3827
-GCF_904810355.1_MmicMaus4_genomic	GCF_904810355.1	Mycobacterium tuberculosis variant microti strain Maus IV isolate	1	4385022	65.62	4111	4060	3815	3815
-GCF_904810365.1_Mmic942272_genomic	GCF_904810365.1	Mycobacterium tuberculosis variant microti strain 94-2272 isolate	1	4384561	65.62	4113	4062	3827	3827
