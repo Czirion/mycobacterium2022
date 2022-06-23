@@ -17,11 +17,11 @@ ncbi-genome-download -P -r 3 -F "fasta,genbank" --genera "Mycobacterium tubercul
 ~~~
 {: .language-bash}
 
-The `-P` flag is used to show a progress bar while the program is running.
-The `-r 3` option specifies to try every genome download 3 times in case the conection with NCBI is interrupted.
-The `-F "fasta,genbank"` options specifies the formats to download.
-The `--genera "Mycobacterium tuberculosis" bacteria` options specifies which genomes will be downloaded.
-The `--dry-run` flag can be used to know which genomes will be downloaded prior to running the download itself.
+The `-P` flag is used to show a progress bar while the program is running. 
+The `-r 3` option specifies to try every genome download 3 times in case the conection with NCBI is interrupted.  
+The `-F "fasta,genbank"` options specifies the formats to download.  
+The `--genera "Mycobacterium tuberculosis" bacteria` options specifies which genomes will be downloaded.  
+The `--dry-run` flag can be used to know which genomes will be downloaded prior to running the download itself.  
 
 ## Creation of metadata table
 
@@ -30,7 +30,7 @@ Next run the script `metadata_generation.sh`:
 ~~~
 bash metadata_generation.sh mt 220622
 ~~~
-{: .bash-language}
+{: .language-bash}
 
 This script runs QUAST on the `.fna.gz` and extracts parameters  
 from the QUAST results and from the `.gbff` files to create a metadata table.  
