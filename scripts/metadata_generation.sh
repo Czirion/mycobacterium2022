@@ -14,6 +14,7 @@
 # - Review your download is correct before running this script
 
 
+
 # Change foldername
 echo "Renaming folders"
 mv refseq/ "$1"_"$2"/
