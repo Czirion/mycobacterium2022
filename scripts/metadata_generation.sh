@@ -35,7 +35,7 @@ echo -e "Assembly""\t"Definition"\t"GenesTotal"\t"CDSsTotal"\t"GenesCoding"\t""C
 ls raw_data/GCF_*/*.gbff | while read line;
 do 
 assembly=$(echo $line | cut -d'/' -f2);
-taxonomy=$(grep -m "DEFINITION" $line | uniq | cut -d' ' -f1,2 --complement)
+taxonomy=$(grep -m 1 "DEFINITION" $line | uniq | cut -d' ' -f1,2 --complement)
 total_genes=$(grep "Genes (total)" $line | grep "Pseudo" -v | uniq | rev | cut -d' ' -f1 | rev);
 total_cds=$(grep "CDSs (total)" $line | uniq | rev | cut -d' ' -f1 | rev );
 coding_genes=$(grep "Genes (coding)" $line | uniq | rev | cut -d' ' -f1 | rev);
