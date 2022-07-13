@@ -7,8 +7,8 @@ Description and code of the Mycobacterium 2022 project
 ### Creation of Conda environment for data downloading (13/07/22)
 
 Add the ncbi-genome-download for assemblies, the sra-tools for reads and biopython to be able to 
-use the  `biosample2table.py` program.
-
+use the  `biosample2table.py` program.  
+:zap:
 ~~~
 conda create --name downloads_ncbi ncbi-genome-download sra-tools biopython
 ~~~
@@ -21,7 +21,8 @@ Versions downloaded:
 ### Add `biosample2table.py` program
 
 **Copied script** from its [GitHub repo](https://github.com/stajichlab/biosample_metadata/blob/main/scripts/biosample2table.py)
-to `ncbi_mtb_genomes/scripts` and **added executing permission**:
+to `ncbi_mtb_genomes/scripts` and **added executing permission**:  
+:zap:
 ~~~
 chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 ~~~
@@ -30,8 +31,8 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 
 ## Download of genome assemblies
 
-The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:
-
+The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
+:zap:
 ~~~
 ncbi-genome-download -P -r 3 -p 8 -m assembly_metadata.tsv -F "fasta,genbank" --genera "Mycobacterium tuberculosis" bacteria
 ~~~
