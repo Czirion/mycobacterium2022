@@ -28,7 +28,7 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 {: .language-bash}
 
 
-## Genome download 
+## Download of genome assemblies
 
 The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:
 
@@ -44,21 +44,3 @@ The `-m assembly_metadata.tsv` option is to generate a metadata table named `ass
 The `-F "fasta,genbank"` options specifies the formats to download.  
 The `--genera "Mycobacterium tuberculosis" bacteria` options specifies which genomes will be downloaded.  
 The `--dry-run` flag can be used to know which genomes will be downloaded prior to running the download itself.  
-
-## Creation of metadata table
-
-Next run the script `metadata_generation.sh`:
-
-~~~
-bash metadata_generation.sh mt 220622
-~~~
-{: .language-bash}
-
-This script runs QUAST on the `.fna.gz` and extracts parameters  
-from the QUAST results and from the `.gbff` files to create a metadata table.  
-
-It is used with the following positional arguments:  
-1: Lineage abreviation to use in folder name  
-2: Date of running to use in folder name  
-
-The output is the file `metadata.tsv` within the `mt_220622/` directory. 
