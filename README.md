@@ -2,11 +2,27 @@
 
 Description and code of the Mycobacterium 2022 project
 
-Requisites:
-- R version 4.2.0
-- Quast v5.0.2
-- ncbi-genome-download version 0.3.1
-- FIXME :anger:
+## Installation and requirements
+
+### Creation of Conda environment for data downloading (13/07/22):
+~~~
+conda create --name downloads_ncbi ncbi-genome-download sra-tools biopython
+~~~
+{: .language-bash}
+
+Versions downloaded:
+- ncbi-genome-download 0.3.1
+- sra-tools 2.11.0
+
+### Add `biosample2table.py` script
+
+**Copied script** from [GitHub repo](https://github.com/stajichlab/biosample_metadata/blob/main/scripts/biosample2table.py)
+to `ncbi_mtb_genomes/scripts` and **added executing permission**:
+~~~
+chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
+~~~
+{: .language-bash}
+
 
 ## Genome download 
 
