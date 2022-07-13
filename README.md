@@ -32,7 +32,7 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 ## Download of genome assemblies
 
 The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
-:zap:
+⚡ ⌛
 ~~~
 ncbi-genome-download -P -r 3 -p 8 -m assembly_metadata.tsv -F "fasta,genbank" --genera "Mycobacterium tuberculosis" bacteria
 ~~~
