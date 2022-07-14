@@ -51,7 +51,7 @@ The output will have the directories `refseq/bacteria/`and inside of it there wi
 
 ## Obtain BioSample metadata
 
-**Extract the BioSample** column from the metadata into a new file.
+**Extract the BioSample** column from the metadata into a new file.  
 ⚡
 ~~~
 cd ncbi_mtb_genomes/
@@ -59,10 +59,10 @@ cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_li
 ~~~
 {: .language-bash}
 
-**Obtain metadata from BioSamples** using `biosample2table.py`.
+**Obtain metadata from BioSamples** using `biosample2table.py`.  
 ⚡
 ~~~
-../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e claudia.zirion@cinvestav.mx
+../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
 ~~~
 {: .language-bash}
 
