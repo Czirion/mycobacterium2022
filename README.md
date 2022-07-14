@@ -20,8 +20,8 @@ Versions downloaded:
 
 ### Add `biosample2table.py` program
 
-**Copied script** from its [GitHub repo](https://github.com/stajichlab/biosample_metadata/blob/main/scripts/biosample2table.py)
-to `ncbi_mtb_genomes/scripts` and **added executing permission**:  
+**Copy script** from its [GitHub repo](https://github.com/stajichlab/biosample_metadata/blob/main/scripts/biosample2table.py)
+to `ncbi_mtb_genomes/scripts` and **add executing permission**:  
 :zap:
 ~~~
 chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
@@ -45,3 +45,24 @@ The `-m assembly_metadata.tsv` option is to generate a metadata table named `ass
 The `-F "fasta,genbank"` options specifies the formats to download.  
 The `--genera "Mycobacterium tuberculosis" bacteria` options specifies which genomes will be downloaded.  
 The `--dry-run` flag can be used to know which genomes will be downloaded prior to running the download itself.  
+
+The output will have the directories `refseq/bacteria/`and inside of it there will be a folder for each assembly. 
+**Rename** `refseq/` for `ncbi_mtb_genomes/` and `bacteria/` for `raw_data/`. And **move the `assembly_metadata.tsv`** inside `ncbi_mtb_genomes`.
+
+## Obtain BioSample metadata
+
+**Extract the BioSample** column from the metadata into a new file.
+⚡
+~~~
+cd ncbi_mtb_genomes/
+cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_list.txt
+~~~
+{: .language-bash}
+
+**Obtain metadata from BioSamples** using `biosample2table.py`.
+⚡
+~~~
+../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e claudia.zirion@cinvestav.mx
+~~~
+{: .language-bash}
+
