@@ -162,24 +162,29 @@ drugs <- drugs[,!(names(drugs) %in% "Drug.Susceptibility.Testing.Profiles")]
 #### Clean Environment ####
 environment<- biosampleClean %>%
   select(BioSample,
-         disease,
          env_broad_scale,
          env_local_scale,
          env_medium,
-         growth_med,
-         health_state,
+         growth_med)
+environment$host_taxid <- as.factor(environment$host_taxid)
+
+host <- biosampleClean %>%
+  select(BioSample,
          host,
-         host.associated.environmental.package,
-         host_age,
          host_description,
-         host_disease,
-         host_disease_outcome,
-         host_disease_stage,
-         host_health_state,
          host_sex,
          host_taxid,
          host_tissue_sampled)
-         
+
+#### Clean disease ####
+disease <- biosampleClean %>%
+  select(BioSample,
+         host_disease,
+         host_disease_outcome,
+         host_disease_stage,
+         host_health_state)
+
+disease$host_disease[3676] <- "tuberculosis"
 #### Make one table for each column ####
 
 make_tables <- function(column){
