@@ -4,7 +4,7 @@ Description and code of the Mycobacterium 2022 project
 
 ## Installation and requirements
 
-### Creation of Conda environment for data downloading (13/07/22)
+### Creation of Conda environment for data downloading (07/13/22)
 
 Add the ncbi-genome-download for assemblies, the sra-tools for reads and biopython to be able to 
 use the  `biosample2table.py` program.  
@@ -29,7 +29,7 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 {: .language-bash}
 
 
-## Download of genome assemblies
+## Download of genome assemblies (07/13/22)
 
 The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
 ⚡ ⌛
