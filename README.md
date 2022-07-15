@@ -66,3 +66,9 @@ cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_li
 ~~~
 {: .language-bash}
 
+**Download** `metadata_biosamples.tsv` to local computer. 
+**Manual modifications** (descirbed in filtrado_de_metadatos.R) to the table to be able to upload it in R.
+
+## Metadata cleaning in R
+
+Run `filtrado_de_metadatos.R` STILL INCOMPLETE
