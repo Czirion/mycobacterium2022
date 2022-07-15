@@ -14,7 +14,8 @@ biosampleMetadata<- read.table("metadata_biosamples_modif.tsv",
                               quote = "")
 #### Remain with relevant columns only ####
 biosampleClean <- biosampleMetadata %>%
-  select(Amikacin.resistance,
+  select(BioSample,
+         Amikacin.resistance,
          Capreomicin.resistance,
          Cicloserine.resistance,
          Drug.Susceptibility.Testing.Profiles,
@@ -65,19 +66,13 @@ biosampleClean <- biosampleMetadata %>%
          pmid,
          region,
          sample_type,
-         scientific.name,
-         scientific_name,
          serotype,
          serovar,
-         strain,
-         sub_species,
          subgroup,
          subspecf_gen_lin,
          subsrc_note,
          subtype,
          supplier_name,
-         tax.id,
-         tax_id,
          type.material)
 
 write_tsv(biosampleClean, "metadata_biosample_relevant.tsv")
@@ -85,19 +80,26 @@ write_tsv(biosampleClean, "metadata_biosample_relevant.tsv")
 
 
 
+#### Clean biosampleClean ####
+dates <- biosampleClean %>%
+                select(BioSample,
+                       collection.month,
+                       collection_month,
+                       collection_date)
+
 #### Make one table for each column ####
 
 make_tables <- function(column){
- tabla <- biosampleMetadata[,c(1,column)]%>% #Make a table with only the column 1 and the column indicated by the argument "column"
+ tabla <- biosampleClean[,c(1,column)]%>% #Make a table with only the column 1 and the column indicated by the argument "column"
     na.omit()%>% #Remove all rows with NAs
     as.data.frame() #Make it a data frame
   return(tabla)
 }
 dir.create("individual_metadata") #Make a directory in which individual tables for each metadata will be saved
 
-for (i in 2:length(biosampleMetadata)){
-  assign(colnames(biosampleMetadata)[i], make_tables(i)) #Use the make_tables function giving a vector with the column names to be used as table names
-  write_tsv(assign(colnames(biosampleMetadata)[i], make_tables(i)), paste("individual_metadata/", colnames(biosampleMetadata)[i], ".tsv", sep = "")) #Put each table in a file
+for (i in 2:length(biosampleClean)){
+  assign(colnames(biosampleClean)[i], make_tables(i)) #Use the make_tables function giving a vector with the column names to be used as table names
+  write_tsv(assign(colnames(biosampleClean)[i], make_tables(i)), paste("individual_metadata/", colnames(biosampleClean)[i], ".tsv", sep = "")) #Put each table in a file
   }
 
 
