@@ -184,7 +184,59 @@ disease <- biosampleClean %>%
          host_disease_stage,
          host_health_state)
 
-disease$host_disease[3676] <- "tuberculosis"
+disease$host_disease[3676] <- "tuberculosis" #Information from "biosampleCleaned$disease
+
+# Convert levels without information to NAs and homogenizing names of host_disease_outcome
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Missing" = NA_character_)
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Not Collected" = NA_character_)
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Unknown" = NA_character_)
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Death of the host" = "Death")
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "euthanasia" = "Euthanasia")
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Chronic disease" = "Chronic")
+disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "recovery" = "Recovered")
+disease$host_disease_outcome[4168] <- "Chronic"
+
+
+# Convert levels without information to NAs and homogenizing names of host_disease_stage
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "Missing" = NA_character_)
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "Not Collected" = NA_character_)
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "Unknown" = NA_character_)
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "Accute" = "Acute")
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "advanced" = "Advanced")
+disease$host_disease_stage <- recode_factor(disease$host_disease_stage, "Active Pulmonary Tuberculosis" = "Active")
+disease$host_disease_stage[4168] <- NA
+disease$host_disease_stage[4156] <- NA
+
+# Convert levels without information to NAs and homogenizing names of host_disease
+disease$host_disease <- recode_factor(disease$host_disease, "Missing" = NA_character_)
+disease$host_disease <- recode_factor(disease$host_disease, "not collected" = NA_character_)
+disease$host_disease <- recode_factor(disease$host_disease, "Unknown" = NA_character_)
+disease$host_disease <- recode_factor(disease$host_disease, "missing" = NA_character_)
+disease$host_disease <- recode_factor(disease$host_disease, "not applicable" = NA_character_)
+disease$host_disease <- recode_factor(disease$host_disease, "Pulmonary TB" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "pulmonary TB" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "Pulmonary tuberculosis" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "pulmonary tuberculosis" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "Tuberculosis of lung" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "lung tuberculosis" = "Pulmonary Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "tuberculosis" = "Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "tubercolusis" = "Tuberculosis")
+disease$host_disease <- recode_factor(disease$host_disease, "Tuberculous meningitis" = "Tuberculosis Meningitis")
+disease$host_disease <- recode_factor(disease$host_disease, "TB meningitis" = "Tuberculosis Meningitis")
+disease$host_disease <- recode_factor(disease$host_disease, "multidrug-resistant tuberculosis" = "multidrug resistant tuberculosis")
+disease$host_disease[4168] <- "Pulmonary Tuberculosis"
+
+# Convert levels without information to NAs and homogenizing names of host_health_state
+disease$host_health_state <- recode_factor(disease$host_health_state, "Missing" = NA_character_)
+disease$host_health_state <- recode_factor(disease$host_health_state, "Not Collected" = NA_character_)
+disease$host_health_state <- recode_factor(disease$host_health_state, "Unknown" = NA_character_)
+disease$host_health_state <- recode_factor(disease$host_health_state, "unknown" = NA_character_)
+disease$host_health_state <- recode_factor(disease$host_health_state, "disease" = "Disease")
+disease$host_health_state <- recode_factor(disease$host_health_state, "disease: tuberculosis" = "Disease")
+disease$host_health_state <- recode_factor(disease$host_health_state, "diseased" = "Disease")
+disease$host_health_state <- recode_factor(disease$host_health_state, "healthy" = "Healthy")
+
+disease <- droplevels(disease)
 #### Make one table for each column ####
 
 make_tables <- function(column){
