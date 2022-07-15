@@ -77,9 +77,6 @@ biosampleClean <- biosampleMetadata %>%
 
 write_tsv(biosampleClean, "metadata_biosample_relevant.tsv")
 
-
-
-
 #### Clean dates ####
 dates <- biosampleClean %>%
                 select(BioSample,
@@ -121,10 +118,10 @@ dates$collection_date <- recode_factor(dates$collection_date, "2007/04/02" = "20
 #### Clean Drug resistance ####
 drugs <- biosampleClean %>%
   select(BioSample,
+         note,
          Amikacin.resistance,
          Capreomicin.resistance,
          Cicloserine.resistance,
-         Drug.Susceptibility.Testing.Profiles,
          Ethianamide.resistance,
          Isoniazide.resistance,
          Levofloxacin.resistance,
@@ -133,22 +130,56 @@ drugs <- biosampleClean %>%
          Ofloxacin.resistance,
          PAS.resistance,
          Rifampicin.resistance,
-         note)
+         Drug.Susceptibility.Testing.Profiles)
 
-notes_drugs <- biosampleClean %>%
+drugs$note[4156] <- "multidrug-resistant"
+drugs$note <- recode_factor(drugs$note, "extensively drug resistant" = "multidrug-resistant")
+drugs$note <- recode_factor(drugs$note, "multidrug-resistant strain" = "multidrug-resistant")
+drugs$note <- recode_factor(drugs$note, "multi-drug resistant" = "multidrug-resistant")
+drugs$note <- recode_factor(drugs$note, "resistant to isoniazid, rifampicin, streptomycin and ethambutol" = "multidrug-resistant") # This is for sample SAMN02603011 [3916]
+
+drugs$note <- as.character(drugs$note)
+drugs$note[drugs$note != "multidrug-resistant"] <- NA
+drugs$note <- as.factor(drugs$note)
+names(drugs)[names(drugs) == 'note'] <- 'drug_resistance'
+
+#Put in the corresponding column the information from Drug.Susceptibility.Testing.Profiles, and delete this column
+drugs$Rifampicin.resistance[c(6741,6742,6743,6744,6745,3916)] <- "Yes"
+drugs$Isoniazide.resistance[c(6741,6743,6744,6745,3916)] <- "Yes"
+drugs["Ethambutol.resistance"] <- NA
+drugs$Ethambutol.resistance[c(6741,6745,3916)] <- "Yes"
+drugs$Ethambutol.resistance <- as.factor(drugs$Ethambutol.resistance)
+drugs["Streptomycin.resistance"] <- NA
+drugs$Streptomycin.resistance[c(6741,6745,3916)] <- "Yes"
+drugs$Streptomycin.resistance <- as.factor(drugs$Streptomycin.resistance)
+drugs["Pyrazinamide.resistance"] <- NA
+drugs$Pyrazinamide.resistance[c(6741,6745)] <- "Yes"
+drugs$Pyrazinamide.resistance <- as.factor(drugs$Pyrazinamide.resistance)
+levels(drugs$drug_resistance) <- c(levels(drugs$drug_resistance), "sensitive")
+drugs$drug_resistance[c(6746,6747,6748,6749,6750)] <- "sensitive"
+drugs <- drugs[,!(names(drugs) %in% "Drug.Susceptibility.Testing.Profiles")]
+
+#### Clean Environment ####
+environment<- biosampleClean %>%
   select(BioSample,
-         note)
-notes_drugs$note[4156] <- "multidrug-resistant"
-notes_drugs$note <- recode_factor(notes_drugs$note, "extensively drug resistant" = "multidrug-resistant")
-notes_drugs$note <- recode_factor(notes_drugs$note, "multidrug-resistant strain" = "multidrug-resistant")
-notes_drugs$note <- recode_factor(notes_drugs$note, "multi-drug resistant" = "multidrug-resistant")
-notes_drugs$note <- recode_factor(notes_drugs$note, "resistant to isoniazid, rifampicin, streptomycin and ethambutol" = "multidrug-resistant") # This is for sample SAMN02603011 [3916]
-
-notes_drugs$note <- as.character(notes_drugs$note)
-notes_drugs$note[notes_drugs$note != "multidrug-resistant"] <- NA
-notes_drugs$note <- as.factor(notes_drugs$note)
-names(notes_drugs)[names(notes_drugs) == 'note'] <- 'drug_resistance'
-
+         disease,
+         env_broad_scale,
+         env_local_scale,
+         env_medium,
+         growth_med,
+         health_state,
+         host,
+         host.associated.environmental.package,
+         host_age,
+         host_description,
+         host_disease,
+         host_disease_outcome,
+         host_disease_stage,
+         host_health_state,
+         host_sex,
+         host_taxid,
+         host_tissue_sampled)
+         
 #### Make one table for each column ####
 
 make_tables <- function(column){
