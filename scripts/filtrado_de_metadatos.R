@@ -80,12 +80,43 @@ write_tsv(biosampleClean, "metadata_biosample_relevant.tsv")
 
 
 
-#### Clean biosampleClean ####
+#### Clean dates ####
 dates <- biosampleClean %>%
                 select(BioSample,
                        collection.month,
                        collection_month,
                        collection_date)
+
+dates$collection.month[is.na(dates$collection.month)] <- 0 #Convert NAs in 0s
+dates$collection_month[is.na(dates$collection_month)] <- 0 #Convert NAs in 0s
+dates <- dates %>%
+  summarize(BioSample = BioSample,
+            collection_month = collection_month+collection.month, # Make only one column for collection month making the sum between both month columns
+            collection_date = collection_date)
+dates$collection_month[dates$collection_month == 0] <- NA #Return 0s to NAs
+
+# Convert levels without date to NAs
+dates$collection_date <- recode_factor(dates$collection_date, "Missing" = NA_character_)
+dates$collection_date <- recode_factor(dates$collection_date, "missing" = NA_character_)
+dates$collection_date <- recode_factor(dates$collection_date, "not applicable" = NA_character_)
+dates$collection_date <- recode_factor(dates$collection_date, "not collected" = NA_character_)
+dates$collection_date <- recode_factor(dates$collection_date, "unknown" = NA_character_)
+dates$collection_date <- recode_factor(dates$collection_date, "Unknown" = NA_character_)
+
+dates$collection_month <- as.character(dates$collection_month)
+dates$collection_date <- as.character(dates$collection_date)
+dates$collection_month <- str_pad(dates$collection_month, 2, pad = "0") #Add a 0 at the beggining of single digits
+
+dates <- dates %>% 
+  unite(col = "collection_date",   collection_date, collection_month, na.rm=TRUE, sep = "-")
+
+dates$collection_date[dates$collection_date == ""] <- NA #Return blanks to NAs
+dates$collection_date <- as.factor(dates$collection_date)
+#Give format to some dates
+dates$collection_date <- recode_factor(dates$collection_date, "February 26, 207" = "2007-02-26")
+dates$collection_date <- recode_factor(dates$collection_date, "22/25/2010" = "2010")
+dates$collection_date <- recode_factor(dates$collection_date, "2009/05/11" = "2009-05-11")
+dates$collection_date <- recode_factor(dates$collection_date, "2007/04/02" = "2007-04-02")
 
 #### Make one table for each column ####
 
