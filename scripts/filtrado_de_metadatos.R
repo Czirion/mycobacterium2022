@@ -118,6 +118,37 @@ dates$collection_date <- recode_factor(dates$collection_date, "22/25/2010" = "20
 dates$collection_date <- recode_factor(dates$collection_date, "2009/05/11" = "2009-05-11")
 dates$collection_date <- recode_factor(dates$collection_date, "2007/04/02" = "2007-04-02")
 
+#### Clean Drug resistance ####
+drugs <- biosampleClean %>%
+  select(BioSample,
+         Amikacin.resistance,
+         Capreomicin.resistance,
+         Cicloserine.resistance,
+         Drug.Susceptibility.Testing.Profiles,
+         Ethianamide.resistance,
+         Isoniazide.resistance,
+         Levofloxacin.resistance,
+         Moxifloxacin.0.5.ug.ml..resistance,
+         Moxifloxacin.1.0.ug.ml..resistance,
+         Ofloxacin.resistance,
+         PAS.resistance,
+         Rifampicin.resistance,
+         note)
+
+notes_drugs <- biosampleClean %>%
+  select(BioSample,
+         note)
+notes_drugs$note[4156] <- "multidrug-resistant"
+notes_drugs$note <- recode_factor(notes_drugs$note, "extensively drug resistant" = "multidrug-resistant")
+notes_drugs$note <- recode_factor(notes_drugs$note, "multidrug-resistant strain" = "multidrug-resistant")
+notes_drugs$note <- recode_factor(notes_drugs$note, "multi-drug resistant" = "multidrug-resistant")
+notes_drugs$note <- recode_factor(notes_drugs$note, "resistant to isoniazid, rifampicin, streptomycin and ethambutol" = "multidrug-resistant") # This is for sample SAMN02603011 [3916]
+
+notes_drugs$note <- as.character(notes_drugs$note)
+notes_drugs$note[notes_drugs$note != "multidrug-resistant"] <- NA
+notes_drugs$note <- as.factor(notes_drugs$note)
+names(notes_drugs)[names(notes_drugs) == 'note'] <- 'drug_resistance'
+
 #### Make one table for each column ####
 
 make_tables <- function(column){
