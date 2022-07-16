@@ -159,22 +159,55 @@ levels(drugs$drug_resistance) <- c(levels(drugs$drug_resistance), "sensitive")
 drugs$drug_resistance[c(6746,6747,6748,6749,6750)] <- "sensitive"
 drugs <- drugs[,!(names(drugs) %in% "Drug.Susceptibility.Testing.Profiles")]
 
-#### Clean Environment ####
-environment<- biosampleClean %>%
-  select(BioSample,
-         env_broad_scale,
-         env_local_scale,
-         env_medium,
-         growth_med)
-environment$host_taxid <- as.factor(environment$host_taxid)
-
+#### Clean host and environment####
 host <- biosampleClean %>%
   select(BioSample,
          host,
-         host_description,
-         host_sex,
-         host_taxid,
-         host_tissue_sampled)
+         host_tissue_sampled,
+         host_sex)
+
+host$host_sex <- recode_factor(host$host_sex, "Missing" = NA_character_)
+host$host_sex <- recode_factor(host$host_sex, "Not Collected" = NA_character_)
+host$host_sex <- recode_factor(host$host_sex, "Unknown" = NA_character_)
+host$host_sex <- recode_factor(host$host_sex, "not collected" = NA_character_)
+host$host_sex <- recode_factor(host$host_sex, "not applicable" = NA_character_)
+host$host_sex <- recode_factor(host$host_sex, "female" = "Female")
+host$host_sex <- recode_factor(host$host_sex, "male" = "Male")
+
+host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "Not Collected" = NA_character_)
+host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "sputum" = "Sputum")
+host$host_tissue_sampled[6695] <- "Sputum"
+
+host$host <- recode_factor(host$host, "not applicable" = NA_character_)
+host$host <- recode_factor(host$host, "Unknown" = NA_character_)
+host$host <- recode_factor(host$host, "missing" = NA_character_)
+host$host <- recode_factor(host$host, "not collected" = NA_character_)
+host$host <- recode_factor(host$host, "Homo sapiens sapiens" = "Homo sapiens")
+host$host <- recode_factor(host$host, "Bovine" = "Bos taurus")
+host$host <- recode_factor(host$host, "bovine" = "Bos taurus")
+host$host <- recode_factor(host$host, "Cattle" = "Bos taurus")
+host$host <- recode_factor(host$host, "cattle" = "Bos taurus")
+host$host <- recode_factor(host$host, "Suricat" = "Suricata suricatta")
+host$host <- recode_factor(host$host, "chimpanzee" = "Pan troglodytes")
+host$host <- recode_factor(host$host, "ethnic Koreans living in China" = "Homo sapiens")
+host$host <- recode_factor(host$host, "sheep" = "Ovis aries")
+host$host <- recode_factor(host$host, "wild boar" = "Sus scrofa")
+host$host <- recode_factor(host$host, "elk" = "Cervus canadensis")
+host$host <- recode_factor(host$host, "Dassie" = "Procavia capensis")
+host$host <- recode_factor(host$host, "sea lion" = "Sea Lion")
+
+#Information from environmentn broad scale and local scale
+host$host[1947] <- "Bos taurus"
+host$host[1964] <- "Homo sapiens"
+host$host_tissue_sampled[5993:5997] <- "Sputum"
+host$host_tissue_sampled[8] <- "Sputum"
+levels(host$host) <- c(levels(host$host), "Mice")
+host$host[6931] <- "Mice"
+levels(host$host_tissue_sampled) <- c(levels(host$host_tissue_sampled), "Gut")
+host$host_tissue_sampled[1964] <- "Gut"
+
+names(host)[names(host) == 'host'] <- 'host_species'
+host<- droplevels(host)
 
 #### Clean disease ####
 disease <- biosampleClean %>%
@@ -237,23 +270,94 @@ disease$host_health_state <- recode_factor(disease$host_health_state, "diseased"
 disease$host_health_state <- recode_factor(disease$host_health_state, "healthy" = "Healthy")
 
 disease <- droplevels(disease)
+#### Clean geographic location ####
+geography <- biosampleClean %>%
+                select(BioSample,
+                        geo_loc_name,
+                        geographic_location_latitude,
+                        geographic_location_longitude,
+                        lat_lon)
+
 #### Make one table for each column ####
 
-make_tables <- function(column){
- tabla <- biosampleClean[,c(1,column)]%>% #Make a table with only the column 1 and the column indicated by the argument "column"
+make_tables <- function(tab,column){
+ tabla <- tab[,c(1,column)]%>% #Make a table with only the column 1 and the column indicated by the argument "column"
     na.omit()%>% #Remove all rows with NAs
     as.data.frame() #Make it a data frame
   return(tabla)
 }
+
 dir.create("individual_metadata") #Make a directory in which individual tables for each metadata will be saved
 
-for (i in 2:length(biosampleClean)){
-  assign(colnames(biosampleClean)[i], make_tables(i)) #Use the make_tables function giving a vector with the column names to be used as table names
-  write_tsv(assign(colnames(biosampleClean)[i], make_tables(i)), paste("individual_metadata/", colnames(biosampleClean)[i], ".tsv", sep = "")) #Put each table in a file
+#Use the make_tables function giving a vector with the column names to be used as table names
+for (i in 2:length(dates)){
+  assign(colnames(dates)[i], make_tables(dates,i)) 
   }
 
+for (i in 2:length(disease)){
+  assign(colnames(disease)[i], make_tables(disease,i)) 
+}
+
+for (i in 2:length(host)){
+  assign(colnames(host)[i], make_tables(host,i)) 
+}
+
+for (i in 2:length(drugs)){
+  assign(colnames(drugs)[i], make_tables(drugs,i)) 
+}
+
+for (i in 2:length(geography)){
+  assign(colnames(geography)[i], make_tables(graography,i)) 
+}
+#Command that goes in the for loop if you want to save each table in a file
+#write_tsv(assign(colnames(dates)[i], make_tables(dates,i)), paste("individual_metadata/", colnames(dates)[i], ".tsv", sep = "")) #Put each table in a file
 
 
+
+#### Reunite cleaned columns in one table ####
+useful_metadata <- full_join(host, disease)
+useful_metadata <- full_join(useful_metadata, drugs)
+useful_metadata <- full_join(useful_metadata, geography)
+useful_metadata <- full_join(useful_metadata, dates)
+
+Amikacin.resistance,
+Capreomicin.resistance,
+Cicloserine.resistance,
+Drug.Susceptibility.Testing.Profiles,
+Ethianamide.resistance,
+Isoniazide.resistance,
+Levofloxacin.resistance,
+Moxifloxacin.0.5.ug.ml..resistance,
+Moxifloxacin.1.0.ug.ml..resistance,
+Ofloxacin.resistance,
+PAS.resistance,
+Rifampicin.resistance,
+SRA.accession,
+collection.month,
+collection_month,
+collection_date,
+description,
+disease,
+env_broad_scale,
+env_local_scale,
+env_medium,
+genotype,
+geo_loc_name,
+geographic_location_latitude,
+geographic_location_longitude,
+growth_med,
+health_state,
+host,
+host.associated.environmental.package,
+host_age,
+host_description,
+host_disease,
+host_disease_outcome,
+host_disease_stage,
+host_health_state,
+host_sex,
+host_taxid,
+host_tissue_sampled,
 #### Load table with assembly metadata ####
 assemblyMetadata<- read.table("assembly_metadata.tsv",
                                sep = "\t", 
