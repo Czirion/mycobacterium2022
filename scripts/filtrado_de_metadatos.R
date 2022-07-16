@@ -421,23 +421,32 @@ dir.create("individual_metadata") #Make a directory in which individual tables f
 
 #Use the make_tables function giving a vector with the column names to be used as table names
 for (i in 2:length(dates)){
-  assign(colnames(dates)[i], make_tables(dates,i)) 
-  }
+  assign(colnames(dates)[i], make_tables(dates,i))
+  write_tsv(assign(colnames(dates)[i], make_tables(dates,i)), paste("individual_metadata/", colnames(dates)[i], ".tsv", sep = "")) #Put each table in a file
+}
 
 for (i in 2:length(disease)){
   assign(colnames(disease)[i], make_tables(disease,i)) 
+  write_tsv(assign(colnames(disease)[i], make_tables(disease,i)), paste("individual_metadata/", colnames(disease)[i], ".tsv", sep = "")) #Put each table in a file
+  
 }
 
 for (i in 2:length(host)){
-  assign(colnames(host)[i], make_tables(host,i)) 
+  assign(colnames(host)[i], make_tables(host,i))
+  write_tsv(assign(colnames(host)[i], make_tables(host,i)), paste("individual_metadata/", colnames(host)[i], ".tsv", sep = "")) #Put each table in a file
+  
 }
 
 for (i in 2:length(drugs)){
   assign(colnames(drugs)[i], make_tables(drugs,i)) 
+  write_tsv(assign(colnames(drugs)[i], make_tables(drugs,i)), paste("individual_metadata/", colnames(drugs)[i], ".tsv", sep = "")) #Put each table in a file
+  
 }
 
 for (i in 2:length(geography)){
-  assign(colnames(geography)[i], make_tables(graography,i)) 
+  assign(colnames(geography)[i], make_tables(geography,i))
+  write_tsv(assign(colnames(geography)[i], make_tables(geography,i)), paste("individual_metadata/", colnames(geography)[i], ".tsv", sep = "")) #Put each table in a file
+  
 }
 #Command that goes in the for loop if you want to save each table in a file
 #write_tsv(assign(colnames(dates)[i], make_tables(dates,i)), paste("individual_metadata/", colnames(dates)[i], ".tsv", sep = "")) #Put each table in a file
@@ -445,13 +454,8 @@ for (i in 2:length(geography)){
 
 
 #### Reunite cleaned columns in one table ####
-useful_metadata <- full_join(collection_date, host_species)
-useful_metadata <- full_join(useful_metadata, host_sex)
-useful_metadata <- full_join(useful_metadata, host_tissue_sampled)
-useful_metadata <- full_join(useful_metadata, host_health_state)
-useful_metadata <- full_join(useful_metadata, host_disease)
-useful_metadata <- full_join(useful_metadata, host_disease_stage)
-useful_metadata <- full_join(useful_metadata, host_disease_outcome)
+useful_metadata <- full_join(collection_date, country)
+useful_metadata <- full_join(useful_metadata, host_species)
 useful_metadata <- full_join(useful_metadata, drug_resistance)
 
 drug_resistance_table <- full_join(drug_resistance, Amikacin.resistance)
