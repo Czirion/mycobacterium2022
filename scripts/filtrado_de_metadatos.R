@@ -84,6 +84,7 @@ dates <- biosampleClean %>%
                        collection_month,
                        collection_date)
 
+#Meke only one column for collection month
 dates$collection.month[is.na(dates$collection.month)] <- 0 #Convert NAs in 0s
 dates$collection_month[is.na(dates$collection_month)] <- 0 #Convert NAs in 0s
 dates <- dates %>%
@@ -100,15 +101,15 @@ dates$collection_date <- recode_factor(dates$collection_date, "not collected" = 
 dates$collection_date <- recode_factor(dates$collection_date, "unknown" = NA_character_)
 dates$collection_date <- recode_factor(dates$collection_date, "Unknown" = NA_character_)
 
+#Join month to year to have only one column about date
 dates$collection_month <- as.character(dates$collection_month)
 dates$collection_date <- as.character(dates$collection_date)
-dates$collection_month <- str_pad(dates$collection_month, 2, pad = "0") #Add a 0 at the beggining of single digits
-
+dates$collection_month <- str_pad(dates$collection_month, 2, pad = "0") #Add a 0 at the begging of single digits
 dates <- dates %>% 
   unite(col = "collection_date",   collection_date, collection_month, na.rm=TRUE, sep = "-")
-
 dates$collection_date[dates$collection_date == ""] <- NA #Return blanks to NAs
 dates$collection_date <- as.factor(dates$collection_date)
+
 #Give format to some dates
 dates$collection_date <- recode_factor(dates$collection_date, "February 26, 207" = "2007-02-26")
 dates$collection_date <- recode_factor(dates$collection_date, "22/25/2010" = "2010")
@@ -132,14 +133,18 @@ drugs <- biosampleClean %>%
          Rifampicin.resistance,
          Drug.Susceptibility.Testing.Profiles)
 
-drugs$note[4156] <- "multidrug-resistant"
+#Add Information from subsrc_note
+drugs$note[4156] <- "multidrug-resistant" 
+
+# Homogenize levels
 drugs$note <- recode_factor(drugs$note, "extensively drug resistant" = "multidrug-resistant")
 drugs$note <- recode_factor(drugs$note, "multidrug-resistant strain" = "multidrug-resistant")
 drugs$note <- recode_factor(drugs$note, "multi-drug resistant" = "multidrug-resistant")
 drugs$note <- recode_factor(drugs$note, "resistant to isoniazid, rifampicin, streptomycin and ethambutol" = "multidrug-resistant") # This is for sample SAMN02603011 [3916]
 
+# Convert column note to column about drug_resistance
 drugs$note <- as.character(drugs$note)
-drugs$note[drugs$note != "multidrug-resistant"] <- NA
+drugs$note[drugs$note != "multidrug-resistant"] <- NA #Erase all information that is not about drug resistance 
 drugs$note <- as.factor(drugs$note)
 names(drugs)[names(drugs) == 'note'] <- 'drug_resistance'
 
@@ -176,7 +181,7 @@ host$host_sex <- recode_factor(host$host_sex, "male" = "Male")
 
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "Not Collected" = NA_character_)
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "sputum" = "Sputum")
-host$host_tissue_sampled[6695] <- "Sputum"
+host$host_tissue_sampled[6695] <- "Sputum" #Information from host_description
 
 host$host <- recode_factor(host$host, "not applicable" = NA_character_)
 host$host <- recode_factor(host$host, "Unknown" = NA_character_)
@@ -196,7 +201,7 @@ host$host <- recode_factor(host$host, "elk" = "Cervus canadensis")
 host$host <- recode_factor(host$host, "Dassie" = "Procavia capensis")
 host$host <- recode_factor(host$host, "sea lion" = "Sea Lion")
 
-#Information from environmentn broad scale and local scale
+#Information from environment broad scale and local scale
 host$host[1947] <- "Bos taurus"
 host$host[1964] <- "Homo sapiens"
 host$host_tissue_sampled[5993:5997] <- "Sputum"
@@ -206,8 +211,9 @@ host$host[6931] <- "Mice"
 levels(host$host_tissue_sampled) <- c(levels(host$host_tissue_sampled), "Gut")
 host$host_tissue_sampled[1964] <- "Gut"
 
+#Change column host to be named host_species
 names(host)[names(host) == 'host'] <- 'host_species'
-host<- droplevels(host)
+host<- droplevels(host) #Remove all levels that are not used
 
 #### Clean disease ####
 disease <- biosampleClean %>%
@@ -217,7 +223,7 @@ disease <- biosampleClean %>%
          host_disease_stage,
          host_health_state)
 
-disease$host_disease[3676] <- "tuberculosis" #Information from "biosampleCleaned$disease
+disease$host_disease[3676] <- "tuberculosis" #Information from biosampleCleaned$disease
 
 # Convert levels without information to NAs and homogenizing names of host_disease_outcome
 disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Missing" = NA_character_)
@@ -227,7 +233,7 @@ disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Dea
 disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "euthanasia" = "Euthanasia")
 disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "Chronic disease" = "Chronic")
 disease$host_disease_outcome <- recode_factor(disease$host_disease_outcome, "recovery" = "Recovered")
-disease$host_disease_outcome[4168] <- "Chronic"
+disease$host_disease_outcome[4168] <- "Chronic" #Information from host_disease_stage
 
 
 # Convert levels without information to NAs and homogenizing names of host_disease_stage
@@ -257,7 +263,7 @@ disease$host_disease <- recode_factor(disease$host_disease, "tubercolusis" = "Tu
 disease$host_disease <- recode_factor(disease$host_disease, "Tuberculous meningitis" = "Tuberculosis Meningitis")
 disease$host_disease <- recode_factor(disease$host_disease, "TB meningitis" = "Tuberculosis Meningitis")
 disease$host_disease <- recode_factor(disease$host_disease, "multidrug-resistant tuberculosis" = "multidrug resistant tuberculosis")
-disease$host_disease[4168] <- "Pulmonary Tuberculosis"
+disease$host_disease[4168] <- "Pulmonary Tuberculosis" #Information from host_disease_stage
 
 # Convert levels without information to NAs and homogenizing names of host_health_state
 disease$host_health_state <- recode_factor(disease$host_health_state, "Missing" = NA_character_)
