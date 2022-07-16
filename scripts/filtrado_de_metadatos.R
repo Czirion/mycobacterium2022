@@ -149,26 +149,22 @@ drugs$note <- as.factor(drugs$note)
 names(drugs)[names(drugs) == 'note'] <- 'drug_resistance'
 
 #Put in the corresponding column the information from Drug.Susceptibility.Testing.Profiles, and delete this column
-drugs$Rifampicin.resistance[c(6741,6742,6743,6744,6745,3916)] <- "Yes"
-drugs$Isoniazide.resistance[c(6741,6743,6744,6745,3916)] <- "Yes"
+#And add information from orgmod_note column
+drugs$Rifampicin.resistance[c(6741,6742,6743,6744,6745,3916, 4184)] <- "Yes"
+drugs$Isoniazide.resistance[c(6741,6743,6744,6745,3916, 3346:3348, 4184)] <- "Yes"
 drugs["Ethambutol.resistance"] <- NA
 drugs$Ethambutol.resistance[c(6741,6745,3916)] <- "Yes"
 drugs$Ethambutol.resistance <- as.factor(drugs$Ethambutol.resistance)
 drugs["Streptomycin.resistance"] <- NA
-drugs$Streptomycin.resistance[c(6741,6745,3916)] <- "Yes"
+drugs$Streptomycin.resistance[c(6741,6745,3916, 4184)] <- "Yes"
 drugs$Streptomycin.resistance <- as.factor(drugs$Streptomycin.resistance)
 drugs["Pyrazinamide.resistance"] <- NA
-drugs$Pyrazinamide.resistance[c(6741,6745)] <- "Yes"
+drugs$Pyrazinamide.resistance[c(6741,6745, 4184)] <- "Yes"
 drugs$Pyrazinamide.resistance <- as.factor(drugs$Pyrazinamide.resistance)
 levels(drugs$drug_resistance) <- c(levels(drugs$drug_resistance), "sensitive")
-drugs$drug_resistance[c(6746,6747,6748,6749,6750)] <- "sensitive"
+drugs$drug_resistance[c(6746,6747,6748,6749,6750,4057, 3337)] <- "sensitive"
+drugs$drug_resistance[c(5629, 3273, 3319, 3320, 3272)] <- "multidrug-resistant"
 drugs <- drugs[,!(names(drugs) %in% "Drug.Susceptibility.Testing.Profiles")]
-
-# Information from orgmod_note
-3346:3348 isoniazid resistant 
-4184 resistant to isoniazid, rifampicin, streptomycin, and pyrazinamide 
-5629 3273 3319 3320 3272 multidrug resistant 
-4057 3337 drug sensitive 
 
 #### Clean host and environment####
 host <- biosampleClean %>%
@@ -187,62 +183,65 @@ host$host_sex <- recode_factor(host$host_sex, "not applicable" = NA_character_)
 host$host_sex <- recode_factor(host$host_sex, "female" = "Female")
 host$host_sex <- recode_factor(host$host_sex, "male" = "Male")
 
+# Information from isolation_source
+host$host_tissue_sampled <- as.character(host$host_tissue_sampled)
+host$host_tissue_sampled[c(6695, 3968,6720,4185, 4186, 4156, 3687, 3688, 3979, 4154, 4204, 4205, 4184, 3916, 4111, 5422:5425, 6712, 6713,which(host$isolation_source == "sputum"),which(host$isolation_source == "Human sputum"))] <- "Sputum" #Information from host_description
+host$host_tissue_sampled[6513] <- "Vertebral"
+host$host_tissue_sampled[6530] <- "Urine"
+host$host_tissue_sampled[4174] <- "Tracheal secretion"
+host$host_tissue_sampled[4000] <- "Testis"
+host$host_tissue_sampled[5985] <- "Superficial abscess"
+host$host_tissue_sampled[c(6932:6935)] <- "Skin"
+host$host_tissue_sampled[c(3047, 3048, 3041, 3051, 3053, which(host$isolation_source == "excreted bodily substance"))] <- "Secretion"
+host$host_tissue_sampled[5450] <- "Retropharyngeal, hepatic and mesenteric lymph Nnodes"
+host$host_tissue_sampled[5449] <- "Retropharyngeal lymph node"
+host$host_tissue_sampled[2987] <- "Retroperitoneal abscess"
+host$host_tissue_sampled[3046] <- "Colon"
+host$host_tissue_sampled[c(3035, 6751, 6765)] <- "Pus"
+host$host_tissue_sampled[c(6531:6541, which(host$isolation_source == "lung"))] <- "Lung"
+host$host_tissue_sampled[5619] <- "Pre-scapular limph node"
+host$host_tissue_sampled[c(3980, 6761, 6762, 3, 3049)] <- "Pleural fluid"
+host$host_tissue_sampled[c(3037, 3038)] <- "Pericard"
+host$host_tissue_sampled[4115] <- "Pectoral limph nodes"
+host$host_tissue_sampled[3989] <- "Pancreas"
+host$host_tissue_sampled[c(5623, 5625, 1963, 1959)] <- "Mesentery lymph node"
+host$host_tissue_sampled[5545] <- "Mediastinal lymph node"
+host$host_tissue_sampled[4215] <- "Mandibular lymph node"
+host$host_tissue_sampled[5447] <- "Lymph nodes, lungs, pleura"
+host$host_tissue_sampled[c(6830, 6831)] <- "Lymph node necropsy"
+host$host_tissue_sampled[5407] <- "Lymph node and lung"
+host$host_tissue_sampled[c(4004, 6682, which(host$isolation_source == "Lymph nodes"))] <- "Lymph nodes"
+host$host_tissue_sampled[c(2974, 2988, 2991, 2994)] <- "Lymph gland"
+host$host_tissue_sampled[5433] <- "Lungs, pleura"
+host$host_tissue_sampled[c(4100, 4162)] <- "Laryngopharyngeal lymph node"
+host$host_tissue_sampled[4013] <- "Kidney"
+host$host_tissue_sampled[1964] <- "Gut"
+host$host_tissue_sampled[c(1965, 1966, which(host$isolation_source == "bronchial fluid"))] <- "Bronchial fluid"
+host$host_tissue_sampled[c(5620, 5622, 5624)] <- "Head lymph node"
+host$host_tissue_sampled[c(2973, 3080, 3091, 3108)] <- "Gland"
+host$host_tissue_sampled[4181] <- "Gastric lavage"
+host$host_tissue_sampled[c(3009, 3032)] <- "Feces"
+host$host_tissue_sampled[6811] <- "Fermented dairy"
+host$host_tissue_sampled[6834] <- "Eye"
+host$host_tissue_sampled[1949] <- "Crachat"
+host$host_tissue_sampled[1958] <- "Cervical lymph node"
+host$host_tissue_sampled[c(3344, 5451, which(host$isolation_source == "CSF"), which(host$isolation_source == "cerebrospinal fluid"))] <- "Cerebrospinal fluid"
+host$host_tissue_sampled[3078] <- "Cerebrospinal"
+host$host_tissue_sampled[4016] <- "Bronchus"
+host$host_tissue_sampled[c(6510, 6514, 6663, 6679, 6684, which(host$isolation_source == "BAL"))] <- "Bronchoalveolar lavage"
+host$host_tissue_sampled[1] <- "Bronchial wash"
+host$host_tissue_sampled[c(3056,which(host$isolation_source == "bronchial"))] <- "Bronchial"
+host$host_tissue_sampled[c(4218, 5465)] <- "Brain"
+host$host_tissue_sampled[c(2264, 2265)] <- "Milk"
+host$host_tissue_sampled[c(which(host$isolation_source == "abscess"))] <- "Abscess"
+  
+host$host_tissue_sampled <- as.factor(host$host_tissue_sampled)
+
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "Not Collected" = NA_character_)
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "sputum" = "Sputum")
-host$host_tissue_sampled[6695] <- "Sputum" #Information from host_description
-
-# Information from isolation_source
-6513 vertebral 
-6530 urine 
-4174 tracheal secretion  
-4000 testis 
-5985 superficial abscess 
-6932:6935 skin 
-3047 3048 3041 3051 3053 secretion 
-5450 retropharyngeal, hepatic and mesenteric lymph nodes 
-5449 retropharyngeal lymph node
-2987 Retroperitoneal Abscess 
-3046 Colon 
-3035 6751 6765 Pus 
-6531:6541 lung 
-5619 Pre-Scapular Limph Node 
-3980 6761 6762 3 3049 pleural fluid 
-3037 3038 pericard 
-4115 Pectoral Limph Nodes 
-3989 pancreas 
-5623 5625 1963 1959 Mesentery Limph Node 
-5545 Mediastinal Lymph Node 
-4215 Mandibular Lymph Node 
-5447 Lymph Nodes, lungs, pleura 
-6830 6831 Lymph node necropsy 
-5407 Lymph Node and Lung 
-4004 6682 Lymph Node 
-2974 2988 2991 2994 Lymph Gland 
-5433 Lungs, pleura 
-4100 4162 Laryngopharyngeal lymph node 
-4013 kidney 
-1964 gut 
-1965 1966 human bronchial fluid 
-5620 5622 5624 Head Lymph Node 
-2973 3080 3091 3108 gland
-4181 Gastric lavage 
-3009 3032 feces 
-6811 fermented dairy 
-6834 Eye 
-1949 crachat 
-1958 cervical lymph node 
-3344 5451 Cerebrospinal fluid 
-3078 cerebrospinal 
-4016 bronchus 
-6510 6514 6663 6679 6684 bronchoalveolar lavage 
-1 bronchial wash 
-3056 bronchial 
-4218 5465 brain 
-2264 2265 milk 
-4185 4186 4156 3687 3688 3979 4154 4204 4205 4184 3916 4111 5422 5423 5424 5425 6712 6713 sputum
-3968 sputum
-6720 sputum
-
+host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "retropharyngeal lymph node" = "Retropharyngeal lymph node")
+host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "mediastinal lymph node" = "Mediastinal lymph node")
+host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "granulomatous lesion in lymph node" = "Granulomatous lesion in lymph node")
 
 
 host$host <- recode_factor(host$host, "not applicable" = NA_character_)
@@ -265,8 +264,8 @@ host$host <- recode_factor(host$host, "sea lion" = "Sea Lion")
 
 #Information from environment broad scale and local scale
 host$host[1947] <- "Bos taurus"
-host$host[1964] <- "Homo sapiens"
-host$host_tissue_sampled[5993:5997] <- "Sputum"
+host$host[c(1964,1965, 1966)] <- "Homo sapiens" #And information from isolation source
+host$host_tissue_sampled[c(5993:5997)] <- "Sputum"
 host$host_tissue_sampled[8] <- "Sputum"
 levels(host$host) <- c(levels(host$host), "Mice")
 host$host[6931] <- "Mice"
@@ -276,6 +275,7 @@ host$host_tissue_sampled[1964] <- "Gut"
 #Change column host to be named host_species
 names(host)[names(host) == 'host'] <- 'host_species'
 host<- droplevels(host) #Remove all levels that are not used
+host <- host[,!(names(host) %in% c("isolation_source", "orgmod_note"))]
 
 #### Clean disease ####
 disease <- biosampleClean %>%
