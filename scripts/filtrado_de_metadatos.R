@@ -1,10 +1,10 @@
 #### Notes on pre-processing ####
-# The column geographic location (country and/or sea	 region) was eliminated by hand in spreadsheet, 
+# The column geographic location (country and/or sea	 region) was eliminated by hand in a spreadsheet, 
 # and its information moved to column geo_loc_name
 # The columns geographic location latitude and longitude had their names changed by hand in spreadsheet
 #### Load table with metadata from BioSamples####
 library(tidyverse)
-setwd("/home/claudia/Documentos/tec-Cuahutemoc/mycobacterium2022/ncbi_mtb_genomes/")
+setwd("/home/claudia/Documentos/tec/mycobacterium2022/ncbi_mtb_genomes/")
 biosampleMetadata<- read.table("metadata_biosamples_modif.tsv",
                               sep = "\t", 
                               header = TRUE, 
@@ -84,7 +84,7 @@ dates <- biosampleClean %>%
                        collection_month,
                        collection_date)
 
-#Meke only one column for collection month
+#Make only one column for collection month
 dates$collection.month[is.na(dates$collection.month)] <- 0 #Convert NAs in 0s
 dates$collection_month[is.na(dates$collection_month)] <- 0 #Convert NAs in 0s
 dates <- dates %>%
@@ -116,7 +116,7 @@ dates$collection_date <- recode_factor(dates$collection_date, "22/25/2010" = "20
 dates$collection_date <- recode_factor(dates$collection_date, "2009/05/11" = "2009-05-11")
 dates$collection_date <- recode_factor(dates$collection_date, "2007/04/02" = "2007-04-02")
 
-#### Clean Drug resistance ####
+#### Clean drug resistance ####
 drugs <- biosampleClean %>%
   select(BioSample,
          note,
@@ -164,11 +164,19 @@ levels(drugs$drug_resistance) <- c(levels(drugs$drug_resistance), "sensitive")
 drugs$drug_resistance[c(6746,6747,6748,6749,6750)] <- "sensitive"
 drugs <- drugs[,!(names(drugs) %in% "Drug.Susceptibility.Testing.Profiles")]
 
+# Information from orgmod_note
+3346:3348 isoniazid resistant 
+4184 resistant to isoniazid, rifampicin, streptomycin, and pyrazinamide 
+5629 3273 3319 3320 3272 multidrug resistant 
+4057 3337 drug sensitive 
+
 #### Clean host and environment####
 host <- biosampleClean %>%
   select(BioSample,
          host,
          host_tissue_sampled,
+         isolation_source,
+         orgmod_note,
          host_sex)
 
 host$host_sex <- recode_factor(host$host_sex, "Missing" = NA_character_)
@@ -182,6 +190,60 @@ host$host_sex <- recode_factor(host$host_sex, "male" = "Male")
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "Not Collected" = NA_character_)
 host$host_tissue_sampled <- recode_factor(host$host_tissue_sampled, "sputum" = "Sputum")
 host$host_tissue_sampled[6695] <- "Sputum" #Information from host_description
+
+# Information from isolation_source
+6513 vertebral 
+6530 urine 
+4174 tracheal secretion  
+4000 testis 
+5985 superficial abscess 
+6932:6935 skin 
+3047 3048 3041 3051 3053 secretion 
+5450 retropharyngeal, hepatic and mesenteric lymph nodes 
+5449 retropharyngeal lymph node
+2987 Retroperitoneal Abscess 
+3046 Colon 
+3035 6751 6765 Pus 
+6531:6541 lung 
+5619 Pre-Scapular Limph Node 
+3980 6761 6762 3 3049 pleural fluid 
+3037 3038 pericard 
+4115 Pectoral Limph Nodes 
+3989 pancreas 
+5623 5625 1963 1959 Mesentery Limph Node 
+5545 Mediastinal Lymph Node 
+4215 Mandibular Lymph Node 
+5447 Lymph Nodes, lungs, pleura 
+6830 6831 Lymph node necropsy 
+5407 Lymph Node and Lung 
+4004 6682 Lymph Node 
+2974 2988 2991 2994 Lymph Gland 
+5433 Lungs, pleura 
+4100 4162 Laryngopharyngeal lymph node 
+4013 kidney 
+1964 gut 
+1965 1966 human bronchial fluid 
+5620 5622 5624 Head Lymph Node 
+2973 3080 3091 3108 gland
+4181 Gastric lavage 
+3009 3032 feces 
+6811 fermented dairy 
+6834 Eye 
+1949 crachat 
+1958 cervical lymph node 
+3344 5451 Cerebrospinal fluid 
+3078 cerebrospinal 
+4016 bronchus 
+6510 6514 6663 6679 6684 bronchoalveolar lavage 
+1 bronchial wash 
+3056 bronchial 
+4218 5465 brain 
+2264 2265 milk 
+4185 4186 4156 3687 3688 3979 4154 4204 4205 4184 3916 4111 5422 5423 5424 5425 6712 6713 sputum
+3968 sputum
+6720 sputum
+
+
 
 host$host <- recode_factor(host$host, "not applicable" = NA_character_)
 host$host <- recode_factor(host$host, "Unknown" = NA_character_)
