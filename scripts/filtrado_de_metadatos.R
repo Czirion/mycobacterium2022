@@ -282,7 +282,69 @@ geography <- biosampleClean %>%
                         geo_loc_name,
                         geographic_location_latitude,
                         geographic_location_longitude,
-                        lat_lon)
+                        lat_lon) 
+
+#Make a column for hospitals and remove this information from geo_loc_name
+hospitals <- c( "Church of Scotland", 
+   "Goodwins Clinic", 
+   "M3 TB Hospital",
+   "Osindisweni Hospital - Occ Health, staff clinic",
+   "Siloah Clinic",
+   "St Margaret's Hospital",
+   "Stanger Hospital",
+   "Catherine Booth",
+   "Christ The King Hospital",
+   "Chwezi Clinic",
+   "Dundee Hospital",
+   "Ethembeni Clinic",
+   "hospital",
+   "St Margaret's TB Hospital")
+geography$geo_loc_name <- as.character(geography$geo_loc_name)
+geography <- geography %>%
+                       mutate(hospital = ifelse(geo_loc_name %in% hospitals, geo_loc_name, NA),
+                              geo_loc_name = ifelse(geo_loc_name %in% hospitals, NA, geo_loc_name))
+geography$hospital <- as.factor(geography$hospital)
+geography$geo_loc_name <- as.factor(geography$geo_loc_name)
+
+#Separate geo_loc_name in country and region
+geography <- geography %>%
+                separate(col= geo_loc_name, 
+                         into= c("country", "region"), 
+                        sep = ": ")%>%
+                separate(col= country, 
+                         into= c("country", "region"), 
+                         sep = ":" )
+geography$country <- as.factor(geography$country)
+geography$region <- as.factor(geography$region)
+
+geography$country <- recode_factor(geography$country, "missing" = NA_character_)
+geography$country <- recode_factor(geography$country, "not applicable" = NA_character_)
+geography$country <- recode_factor(geography$country, "N/A" = NA_character_)
+geography$country <- recode_factor(geography$country, "Not applicable" = NA_character_)
+geography$country <- recode_factor(geography$country, "not collected" = NA_character_)
+geography$country <- recode_factor(geography$country, "Unknown" = NA_character_)
+
+geography$lat_lon <- recode_factor(geography$lat_lon, "missing" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "not applicable" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "N/A" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "n/a" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "Not Applicable" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "Not collected" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "Not Collected" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "Not applicable" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "not collected" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "Unknown" = NA_character_)
+geography$lat_lon <- recode_factor(geography$lat_lon, "-" = NA_character_)
+
+geography <- geography %>%
+  separate(col = lat_lon, into=c("latitude","NS_lat","longitude","WE_lon"),sep= " ")
+
+geography$latitude <- as.factor(geography$latitude)
+geography$NS_lat <- as.factor(geography$NS_lat)
+geography$longitude <- as.factor(geography$longitude)
+geography$WE_lon <- as.factor(geography$WE_lon)
+
+geography <- droplevels(geography)
 
 #### Make one table for each column ####
 
