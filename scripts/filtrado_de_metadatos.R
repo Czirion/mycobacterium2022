@@ -315,49 +315,35 @@ for (i in 2:length(geography)){
 
 
 #### Reunite cleaned columns in one table ####
-useful_metadata <- full_join(host, disease)
-useful_metadata <- full_join(useful_metadata, drugs)
-useful_metadata <- full_join(useful_metadata, geography)
-useful_metadata <- full_join(useful_metadata, dates)
+useful_metadata <- full_join(collection_date, host_species)
+useful_metadata <- full_join(useful_metadata, host_sex)
+useful_metadata <- full_join(useful_metadata, host_tissue_sampled)
+useful_metadata <- full_join(useful_metadata, host_health_state)
+useful_metadata <- full_join(useful_metadata, host_disease)
+useful_metadata <- full_join(useful_metadata, host_disease_stage)
+useful_metadata <- full_join(useful_metadata, host_disease_outcome)
+useful_metadata <- full_join(useful_metadata, drug_resistance)
 
-Amikacin.resistance,
-Capreomicin.resistance,
-Cicloserine.resistance,
-Drug.Susceptibility.Testing.Profiles,
-Ethianamide.resistance,
-Isoniazide.resistance,
-Levofloxacin.resistance,
-Moxifloxacin.0.5.ug.ml..resistance,
-Moxifloxacin.1.0.ug.ml..resistance,
-Ofloxacin.resistance,
-PAS.resistance,
-Rifampicin.resistance,
-SRA.accession,
-collection.month,
-collection_month,
-collection_date,
-description,
-disease,
-env_broad_scale,
-env_local_scale,
-env_medium,
-genotype,
-geo_loc_name,
-geographic_location_latitude,
-geographic_location_longitude,
-growth_med,
-health_state,
-host,
-host.associated.environmental.package,
-host_age,
-host_description,
-host_disease,
-host_disease_outcome,
-host_disease_stage,
-host_health_state,
-host_sex,
-host_taxid,
-host_tissue_sampled,
+drug_resistance_table <- full_join(drug_resistance, Amikacin.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Capreomicin.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Cicloserine.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Ethianamide.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Ethambutol.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Isoniazide.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Levofloxacin.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Moxifloxacin.1.0.ug.ml..resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Moxifloxacin.0.5.ug.ml..resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Ofloxacin.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, PAS.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Pyrazinamide.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Rifampicin.resistance)
+drug_resistance_table <- full_join(drug_resistance_table, Streptomycin.resistance)
+
+write_tsv(useful_metadata, "useful_metadata.tsv",na = "") #Put each table in a file
+write_tsv(drug_resistance_table, "drug_metadata.tsv",na = "") #Put each table in a file
+
+observaciones_completas <- na.omit(useful_metadata)
+
 #### Load table with assembly metadata ####
 assemblyMetadata<- read.table("assembly_metadata.tsv",
                                sep = "\t", 
