@@ -75,14 +75,14 @@ Run `filtrado_de_metadatos.R` STILL INCOMPLETE
 
 ## Get assembly parameters with QUAST
 
-**Load environment** that has Quast installed. (Environment `metagenomics` was already available in the server).
+**Load environment** that has Quast installed. (Environment `metagenomics` was already available in the server).  
 - Quast v5.0.2
 
 :zap:
 ~~~
 conda activate metagenomics
 ~~~
-Run Quast in all nucelotide fastas:
+**Run Quast** in all nucelotide fastas:  
 :zap:
 ~~~
 quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
