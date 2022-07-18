@@ -521,3 +521,4 @@ quastReportSelect <- quastReport %>%
 #### Join tables with assembly metadata ####
 bio_assembly_metadata <- full_join(assemblyMetadataSelect, quastReportSelect)
 bio_assembly_metadata <- full_join(bio_assembly_metadata, useful_metadata)
+write_tsv(bio_assembly_metadata, "bio_assembly_metadata.tsv",na = "") #Put the table in a file
