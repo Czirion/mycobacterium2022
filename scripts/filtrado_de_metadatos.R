@@ -479,7 +479,7 @@ write_tsv(useful_metadata, "useful_metadata.tsv",na = "") #Put each table in a f
 write_tsv(drug_resistance_table, "drug_metadata.tsv",na = "") #Put each table in a file
 write_tsv(observaciones_completas, "observaciones_completas.tsv",na = "") #Put each table in a file
 
-#### Load table with assembly metadata ####
+#### Load tables with assembly metadata ####
 assemblyMetadata<- read.table("assembly_metadata.tsv",
                                sep = "\t", 
                                header = TRUE, 
@@ -487,7 +487,37 @@ assemblyMetadata<- read.table("assembly_metadata.tsv",
                                stringsAsFactors = TRUE, 
                                fill = TRUE, 
                                quote = "")
-organismBiosample <- select(assemblyMetadata, 
-                            biosample, 
-                            organism_name, 
-                            infraspecific_name)
+
+assemblyMetadataSelect <- assemblyMetadata %>%
+                                select(Assembly = assembly_accession,
+                                       BioSample= biosample,
+                                       bioproject,
+                                       organism_name,
+                                       infraspecific_name)%>%
+                                distinct() #Rows are repeated because there is a row for the fasta and one for the gbff, so here the repetition is deleated.
+
+#The headers were modified by hand to the current names for easiness of importation
+quastReport <-read.table("quast_transposed_report_modif.tsv",
+                         sep = "\t", 
+                         header = TRUE, 
+                         na.strings=c("","NA"), 
+                         stringsAsFactors = TRUE, 
+                         fill = TRUE, 
+                         quote = "")
+
+quastReportSelect <- quastReport %>%
+  separate(col = Assembly,
+           into = c("GCF", "assembly", "code", "genomic"),
+           sep = "_") %>%
+  unite(col = "Assembly",   GCF, assembly, na.rm=TRUE, sep = "_") %>%
+  select(Assembly,
+         contigs,
+         Largest_contig,
+         Total_length,
+         GC)
+
+
+
+#### Join tables with assembly metadata ####
+bio_assembly_metadata <- full_join(assemblyMetadataSelect, quastReportSelect)
+bio_assembly_metadata <- full_join(bio_assembly_metadata, useful_metadata)
