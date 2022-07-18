@@ -69,10 +69,6 @@ cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_li
 **Download** `metadata_biosamples.tsv` to local computer. 
 **Manual modifications** (descirbed in filtrado_de_metadatos.R) to the table to be able to upload it in R.
 
-## Metadata cleaning in R
-
-Run `filtrado_de_metadatos.R` STILL INCOMPLETE
-
 ## Get assembly parameters with QUAST
 
 **Load environment** that has Quast installed. (Environment `metagenomics` was already available in the server).  
@@ -88,3 +84,6 @@ conda activate metagenomics
 quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 ~~~
 
+## Metadata cleaning in R
+
+Run `filtrado_de_metadatos.R` STILL INCOMPLETE
