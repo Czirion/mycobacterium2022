@@ -29,7 +29,7 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 {: .language-bash}
 
 
-## Download of genome assemblies (07/13/22)
+## Download of genome assemblies and metadata (07/13/22)
 
 **Download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
 ⚡ ⌛
@@ -49,10 +49,6 @@ The `--dry-run` flag can be used to know which genomes will be downloaded prior 
 The output will have the directories `refseq/bacteria/`and inside of it there will be a folder for each assembly. 
 **Rename** `refseq/` for `ncbi_mtb_genomes/` and `bacteria/` for `raw_data/`. And **move the `assembly_metadata.tsv`** inside `ncbi_mtb_genomes`.
 
-## Metadata exploration of downloaded assembled genomes and SRA reads
-
-### Obtain BioSample metadata for the downloaded **assemblies**
-
 With the downloaded assemblies an `assembly_metadata.tsv` was generated. **Extract the BioSample** column from the metadata into a new file.  
 ⚡
 ~~~
@@ -61,16 +57,32 @@ cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_li
 ~~~
 {: .language-bash}
 
-**Obtain metadata from BioSamples** using `biosample2table.py`.  
-⚡
-~~~
-../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
-~~~
-{: .language-bash}
-
 **Download** `metadata_biosamples.tsv` to local computer. 
 
-### Get assembly parameters with QUAST
+## Download RunInfo of the SRA reads
+
+Go to the [SRA page](https://www.ncbi.nlm.nih.gov/sra) and search "Mycobacterium tuberculosis".  
+Apply the filters:
+- Source: DNA
+- Type: genome
+- Layout: paired
+- Platfrom: Illumina
+- File type: fastq
+Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
+Make a folder `reads_mtb_sra/` and put the file there.
+
+**Create a file with BioSample** numbers from `SraRunInfo.csv`:
+💻
+~~~
+cd reads_mtb_sra/
+cat SraRunInfo.csv | cut -d',' -f26 | grep "BioSample" -v > biosamples_list.txt
+~~~
+{: .language-bash}
+**Upload** the `biosamples_list.txt` to the server.
+
+## Metadata exploration of downloaded assembled genomes and SRA reads
+
+### Get assembly parameters with QUAST for the downloaded assemblies
 
 **Load environment** that has Quast installed. (Environment `metagenomics` was already available in the server).  
 - Quast v5.0.2
@@ -85,17 +97,7 @@ conda activate metagenomics
 quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 ~~~
 
-### Obtain BioSample metadata for the **SRA reads**
-
-Go to the [SRA page](https://www.ncbi.nlm.nih.gov/sra) and search "Mycobacterium tuberculosis".  
-Apply the filters:
-- Source: DNA
-- Type: genome
-- Layout: paired
-- Platfrom: Illumina
-- File type: fastq
-Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
-Make a folder `reads_mtb_sra/` and put the file there.
+### Obtain BioSample metadata for both assemlies and SRA reads
 
 
 **Obtain metadata from BioSamples** using `biosample2table.py`.  
