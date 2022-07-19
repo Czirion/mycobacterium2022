@@ -71,7 +71,7 @@ Apply the filters:
 Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
 Make a folder `reads_mtb_sra/` and put the file there.
 
-**Extract the BioSample** column  from `SraRunInfo.csv`: 
+**Extract the BioSample** column  from `SraRunInfo.csv`:  
 💻
 ~~~
 cd reads_mtb_sra/
