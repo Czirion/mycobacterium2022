@@ -49,15 +49,14 @@ The `--dry-run` flag can be used to know which genomes will be downloaded prior 
 The output will have the directories `refseq/bacteria/`and inside of it there will be a folder for each assembly. 
 **Rename** `refseq/` for `ncbi_mtb_genomes/` and `bacteria/` for `raw_data/`. And **move the `assembly_metadata.tsv`** inside `ncbi_mtb_genomes`.
 
-With the downloaded assemblies an `assembly_metadata.tsv` was generated. **Extract the BioSample** column from the metadata into a new file.  
+With the downloaded assemblies an `assembly_metadata.tsv` was generated.  
+**Extract the BioSample** column from the metadata into a new file.  
 ⚡
 ~~~
 cd ncbi_mtb_genomes/
 cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_list.txt
 ~~~
 {: .language-bash}
-
-**Download** `metadata_biosamples.tsv` to local computer. 
 
 ## Download RunInfo of the SRA reads
 
