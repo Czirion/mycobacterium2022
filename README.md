@@ -29,9 +29,9 @@ chmod +x ncbi_mtb_genomes/scripts/biosample2table.py
 {: .language-bash}
 
 
-## Download of genome assemblies (07/13/22)
+## Download of genome assemblies and metadata (07/13/22)
 
-The first step is to **download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
+**Download genomes** in bulk from the NCBI using the `ncbi-genome-download` software using the following code:  
 ⚡ ⌛
 ~~~
 ncbi-genome-download -P -r 3 -p 8 -m assembly_metadata.tsv -F "fasta,genbank" --genera "Mycobacterium tuberculosis" bacteria
@@ -49,9 +49,7 @@ The `--dry-run` flag can be used to know which genomes will be downloaded prior 
 The output will have the directories `refseq/bacteria/`and inside of it there will be a folder for each assembly. 
 **Rename** `refseq/` for `ncbi_mtb_genomes/` and `bacteria/` for `raw_data/`. And **move the `assembly_metadata.tsv`** inside `ncbi_mtb_genomes`.
 
-## Obtain BioSample metadata
-
-**Extract the BioSample** column from the metadata into a new file.  
+With the downloaded assemblies an `assembly_metadata.tsv` was generated. **Extract the BioSample** column from the metadata into a new file.  
 ⚡
 ~~~
 cd ncbi_mtb_genomes/
@@ -59,17 +57,32 @@ cat assembly_metadata.tsv | cut -f3 | grep "biosample" -v | uniq > biosamples_li
 ~~~
 {: .language-bash}
 
-**Obtain metadata from BioSamples** using `biosample2table.py`.  
-⚡
+**Download** `metadata_biosamples.tsv` to local computer. 
+
+## Download RunInfo of the SRA reads
+
+Go to the [SRA page](https://www.ncbi.nlm.nih.gov/sra) and search "Mycobacterium tuberculosis".  
+Apply the filters:
+- Source: DNA
+- Type: genome
+- Layout: paired
+- Platfrom: Illumina
+- File type: fastq
+Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
+Make a folder `reads_mtb_sra/` and put the file there.
+
+**Create a file with BioSample** numbers from `SraRunInfo.csv`:
+💻
 ~~~
-../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
+cd reads_mtb_sra/
+cat SraRunInfo.csv | cut -d',' -f26 | grep "BioSample" -v > biosamples_list.txt
 ~~~
 {: .language-bash}
+**Upload** the `biosamples_list.txt` to the server.
 
-**Download** `metadata_biosamples.tsv` to local computer. 
-**Manual modifications** (descirbed in filtrado_de_metadatos.R) to the table to be able to upload it in R.
+## Metadata exploration of downloaded assembled genomes and SRA reads
 
-## Get assembly parameters with QUAST
+### Get assembly parameters with QUAST for the downloaded assemblies
 
 **Load environment** that has Quast installed. (Environment `metagenomics` was already available in the server).  
 - Quast v5.0.2
@@ -84,6 +97,23 @@ conda activate metagenomics
 quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 ~~~
 
-## Metadata cleaning in R
+### Obtain BioSample metadata for both assemlies and SRA reads
 
-Run `filtrado_de_metadatos.R` STILL INCOMPLETE
+
+**Obtain metadata from BioSamples** using `biosample2table.py`.  
+⚡
+~~~
+cd ncbi_mtb_genomes/
+../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
+cd ../reads_mtb_sra/
+../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
+~~~
+{: .language-bash}
+
+**Download** both `metadata_biosamples.tsv` files to local computer. 
+
+## Metadata cleaning in R
+For the assemblies the metadata cleaning and exploration was performed with the R script: `filtrado_de_metadatos.R`
+
+For the SRA reads the metadata cleaning and exploration was performed with the R script: `limpieza_metadatos.sra.R
+`limpieza_metadatos_sra.R`
