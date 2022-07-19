@@ -70,13 +70,14 @@ Apply the filters:
 Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
 Make a folder `reads_mtb_sra/` and put the file there.
 
-**Create a file with BioSample** numbers from `SraRunInfo.csv`:
+**Extract the BioSample** column  from `SraRunInfo.csv`: 
 💻
 ~~~
 cd reads_mtb_sra/
 cat SraRunInfo.csv | cut -d',' -f26 | grep "BioSample" -v > biosamples_list.txt
 ~~~
 {: .language-bash}
+
 **Upload** the `biosamples_list.txt` to the server.
 
 ## Metadata exploration of downloaded assembled genomes and SRA reads
