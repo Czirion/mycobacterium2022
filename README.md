@@ -113,7 +113,7 @@ cd ../reads_mtb_sra/
 
 **Download** both `metadata_biosamples.tsv` files to local computer. 
 
-## Metadata cleaning in R
+### Metadata cleaning in R
 For the assemblies the metadata cleaning and exploration was performed with the R script: `filtrado_de_metadatos.R`
 
 For the SRA reads the metadata cleaning and exploration was performed with the R script: `limpieza_metadatos.sra.R
