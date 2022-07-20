@@ -68,7 +68,7 @@ Apply the filters:
 - Platfrom: Illumina
 - File type: fastq
 
-Click on `Sent to` `File` `Accession List`. This will download a file `SraAccList.csv` that  
+Click on `Sent to` `File` `Accession List`. This will download a file `SraAccList.txt` that  
 has 92,409 SRA accessions.
 Make a folder `reads_mtb_sra/` and put the file there.
 
