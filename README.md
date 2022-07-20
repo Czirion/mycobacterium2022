@@ -68,14 +68,11 @@ Apply the filters:
 - Platfrom: Illumina
 - File type: fastq
 
-Click on `Sent to` `File` `RunInfo`. This will download a file `SraRunInfo.csv` from which the BioSample numbers can be extracted.  
+Click on `Sent to` `File` `Accession List`. This will download a file `SraAccList.csv` that  
+has 92,409 SRA accessions.
 Make a folder `reads_mtb_sra/` and put the file there.
 
-**Extract the BioSample** column  from `SraRunInfo.csv`:  
-💻
-IN PROCESS
-
-**Upload** the `biosamples_list.txt` to the server.
+**Upload the SraAccList.txt** to the server:  
 
 ## Metadata exploration of downloaded assembled genomes and SRA reads
 
@@ -103,7 +100,7 @@ quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 cd ncbi_mtb_genomes/
 ../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
 cd ../reads_mtb_sra/
-../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
+../scripts/biosample2table.py --in SraAccList.txt --sra --out metadata_SraAccessions.tsv -e <user-email>
 ~~~
 {: .language-bash}
 
