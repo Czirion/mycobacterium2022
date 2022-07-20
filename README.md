@@ -91,14 +91,19 @@ conda activate metagenomics
 quast -o quast/ --space-efficient raw_data/GCF_*/*.fna.gz
 ~~~
 
-### Obtain BioSample metadata for both assemlies and SRA reads
+### Obtain sample metadata for both assemblies and SRA reads
 
-
-**Obtain metadata from BioSamples** using `biosample2table.py`.  
+**Run `biosample2table.py`**  for assemblies:
 ⚡
 ~~~
 cd ncbi_mtb_genomes/
 ../scripts/biosample2table.py --in biosamples_list.txt --out metadata_biosamples.tsv -e <user-email>
+~~~
+{: .language-bash}
+
+**Run `biosample2table.py`**  for reads:
+⚡
+~~~
 cd ../reads_mtb_sra/
 ../scripts/biosample2table.py --in SraAccList.txt --sra --out metadata_SraAccessions.tsv -e <user-email>
 ~~~
