@@ -7,4 +7,12 @@ sraMetadata<- read.table("SraRunInfo.csv",
                                stringsAsFactors = TRUE, 
                                fill = TRUE,
                                quote = "")
+sraMetadata <- distinct(sraMetadata)
+ids <- sraMetadata %>%
+  select(Run,
+         Experiment,
+         SRAStudy,
+         BioSample,
+         SampleType)%>%
+  distinct() #When distinct is added 63 observations are lost
 
