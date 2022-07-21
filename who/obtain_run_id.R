@@ -1,5 +1,6 @@
 library(tidyverse)
 setwd("/home/claudia/Documentos/tec/mycobacterium2022/who/")
+#The mmc2.xlsx table downloaded from the WHO was manualy modified to include antibiotic name in columns about it
 MMC2_S1<- readxl::read_xlsx("mmc2_modificado.xlsx", sheet = "S1", col_types = "text")
 cols <- colnames(MMC2_S1)
 MMC2_S1[cols] <- lapply(MMC2_S1[cols], factor)
@@ -24,6 +25,7 @@ ids_complemento <- MMC2_S1 %>%
            into = cols,
            sep = " ")
 ids_complemento[cols] <- lapply(ids_complemento[cols], factor)
+rm(cols)
 
 # Table with observations with only one run (runA)
 ids_runA <- ids_complemento %>%
@@ -62,6 +64,8 @@ ids_runABC <- ids_complemento %>%
            is.na(runD))%>%
   select(-runD)%>%
   droplevels()
+
+write.table(ids_runABC, "ejemplo_multiples_runs.tsv", sep = "\t", row.names = FALSE)
 
 # Table with observations with four runs (runA,runB, runC, runD)
 ids_runABCD <- ids_complemento %>%
