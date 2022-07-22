@@ -14,8 +14,8 @@ the original table was broken down into many tables in order to extract the BioS
 ### Table with complete information about Run, Experiment and BioSample and only one SRA Run per observation (22,155)
 
 - `ids_todos` is the dataframe in R  
-- `runs_ids_todos.tsv` has only the SRA Runs and is used to obtain the metadta with:
-
+- `runs_ids_todos.tsv` has only the SRA Runs and is used to obtain the metadta with:  
+⚡
 ~~~
 ../scripts/biosample2table.py --in runs_ids_todos.tsv --sra --out metadata_ids_todos.tsv -e <user-email>
 ~~~
@@ -23,4 +23,10 @@ the original table was broken down into many tables in order to extract the BioS
 
 ### Table with BioSample information instead of SRA Runs (7,275)
 
-`ids_runA_BioSample` is the dataframe in R with the BioSample codes in the `runA`column
+- `ids_runA_BioSample` is the dataframe in R with the BioSample codes in the `runA`column
+- `biosam_ids_runA.txt` has only the BioSamples and is used to obtain the metadta with:  
+⚡
+~~~
+../scripts/biosample2table.py --in biosam_ids_runA --out metadata_biosam_ids_runA.tsv -e <user-email>
+~~~
+{: .language-bash}
