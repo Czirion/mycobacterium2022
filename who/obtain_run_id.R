@@ -13,6 +13,9 @@ ids_todos <- MMC2_S1 %>%
          !is.na(ena_experiment) &
          !is.na(ena_sample))
 
+runs_ids_todos <- select(ids_todos, ena_run)
+write_tsv(runs_ids_todos, "runs_ids_todos.tsv", col_names = FALSE)
+  
 # Complement of previous table. 
 # Here at least one or ena_run, ena_sample, ena_experiment has an NA
 # And ena_run column was devided into four, because some samples has ut to four runs
@@ -41,11 +44,24 @@ ids_runA_BioSample <- ids_runA %>%
   filter(grepl('SAM', runA))%>%
   droplevels()
 
+biosam_ids_runA <- select(ids_runA_BioSample, runA)
+write_tsv(biosam_ids_runA, "biosam_ids_runA.txt", col_names = FALSE)
+
 ids_runA_SRA <- ids_runA %>%
   filter(grepl('SRR|ERR', runA))%>%
   droplevels()
 
 rm(ids_runA)
+
+# This is a list of the SRA runs that have two observations.
+# Apparently one is a measurement with past_WHO category and the other one with current_WHO
+conts <- as.data.frame(count(ids_runA_SRA, runA)) %>%
+  filter(n == 2)
+
+ejemplo_doble_run <- ids_runA_SRA %>%
+  filter(runA %in% conts$runA)%>%
+  arrange(runA)
+write_tsv(ejemplo_doble_run, "ejemplo_doble_run.tsv")
 
 # Table with observations with two runs (runA and runB)
 ids_runAB <- ids_complemento %>%
@@ -85,3 +101,8 @@ ids_runNULL <- ids_complemento %>%
   droplevels()
 
 rm(ids_complemento)
+
+#### Filter all observations according to pasto or current methods ####
+
+category_who <- select(MMC2_S1,
+               contains("classification"))
