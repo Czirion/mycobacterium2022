@@ -1,7 +1,7 @@
 library(tidyverse)
 setwd("/home/claudia/Documentos/tec/mycobacterium2022/who/")
 #The mmc2.xlsx table downloaded from the WHO was manualy modified to include antibiotic name in columns about it
-MMC2_S1<- readxl::read_xlsx("mmc2_modificado.xlsx", sheet = "S1", col_types = "text")
+MMC2_S1<- readxl::read_xlsx("mmc2_modificado.xlsx", sheet = "S1", col_types = "text", .name_repair = "universal")
 cols <- colnames(MMC2_S1)
 MMC2_S1[cols] <- lapply(MMC2_S1[cols], factor)
 
@@ -104,5 +104,8 @@ rm(ids_complemento)
 
 #### Filter all observations according to pasto or current methods ####
 
-category_who <- select(MMC2_S1,
-               contains("classification"))
+malos <- c("WHO_past", "WHO_undefined", "CRyPTIC")
+category_who <- MMC2_S1 %>%
+                select(isolate.name, 
+                        contains("classification"))%>%
+                filter(Amikacin.classification.of.phenpotypic.method == "WHO_current" | is.na(Amikacin.classification.of.phenpotypic.method))
