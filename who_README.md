@@ -11,24 +11,6 @@ And then I used the script `who/obtain_run_id.R` script to do the following step
 Since not every observation (38,223 total) has an SRA run number and some have multiple SRA numbers, 
 the original table was broken down into many tables in order to extract the BioSample or SRA number according to the data available.
 
-### Table with complete information about Run, Experiment and BioSample and only one SRA Run per observation (22,155)
-
-- `SRA_todos.txt` has only the SRA Runs and is used to obtain the metadta with:  
-⚡
-~~~
-../scripts/biosample2table.py --in SRA_todos.txt --sra --out metadata_ids_todos.tsv -e <user-email>
-~~~
-{: .language-bash}
-
-### Table with BioSample information in ena_run column (7,275)
-
-- `biosample_runA.txt` has only the BioSamples and is used to obtain the metadta with:  
-⚡
-~~~
-../scripts/biosample2table.py --in biosample_runA.txt --out metadata_biosam_ids_runA.tsv -e <user-email>
-~~~
-{: .language-bash}
-
 ## All lists
 
 - `SRA_todos.txt` : List of SRA runs. Where there is only one run number and all other codes (project, sample and axperiment) are present. 22,155 
@@ -41,3 +23,10 @@ the original table was broken down into many tables in order to extract the BioS
 - `biosample_sampleAB.tsv`: Lists of BioSamples. Where there was no SRA run and every observation has two BioSamples. 56
 - `ids_run_sample_NULL.tsv`: Complete table without information for `ena_run` or `ena_sample`. 2,412
  
+### Extract metadata from SRA_todos.txt
+
+⚡
+~~~
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_todos.txt --sra --out metadata_SRA_todos.tsv -e <user-email>
+~~~
+{: .language-bash}
