@@ -30,3 +30,20 @@ the original table was broken down into many tables in order to extract the BioS
 ../scripts/biosample2table.py --in biosam_ids_runA --out metadata_biosam_ids_runA.tsv -e <user-email>
 ~~~
 {: .language-bash}
+
+### Table with SRA Runs (2,880)
+
+- `ids_runA_SRA`
+
+### Table with two SRA runs per observation (159)
+
+- `ids_runAB`
+
+### Table with three SRA runs per observation (2)
+
+- `ids_runABC`
+
+### Table with four SRA runs per observation (74)
+
+- `ids_runABCD`
+ 
