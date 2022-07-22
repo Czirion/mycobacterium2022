@@ -13,37 +13,31 @@ the original table was broken down into many tables in order to extract the BioS
 
 ### Table with complete information about Run, Experiment and BioSample and only one SRA Run per observation (22,155)
 
-- `ids_todos` is the dataframe in R  
-- `runs_ids_todos.tsv` has only the SRA Runs and is used to obtain the metadta with:  
+- `SRA_todos.txt` has only the SRA Runs and is used to obtain the metadta with:  
 ⚡
 ~~~
-../scripts/biosample2table.py --in runs_ids_todos.tsv --sra --out metadata_ids_todos.tsv -e <user-email>
+../scripts/biosample2table.py --in SRA_todos.txt --sra --out metadata_ids_todos.tsv -e <user-email>
 ~~~
 {: .language-bash}
 
-### Table with BioSample information instead of SRA Runs (7,275)
+### Table with BioSample information in ena_run column (7,275)
 
-- `ids_runA_BioSample` is the dataframe in R with the BioSample codes in the `runA`column
-- `biosam_ids_runA.txt` has only the BioSamples and is used to obtain the metadta with:  
+- `biosample_runA.txt` has only the BioSamples and is used to obtain the metadta with:  
 ⚡
 ~~~
-../scripts/biosample2table.py --in biosam_ids_runA --out metadata_biosam_ids_runA.tsv -e <user-email>
+../scripts/biosample2table.py --in biosample_runA.txt --out metadata_biosam_ids_runA.tsv -e <user-email>
 ~~~
 {: .language-bash}
 
-### Table with SRA Runs (2,880)
+## All lists
 
-- `ids_runA_SRA`
-
-### Table with two SRA runs per observation (159)
-
-- `ids_runAB`
-
-### Table with three SRA runs per observation (2)
-
-- `ids_runABC`
-
-### Table with four SRA runs per observation (74)
-
-- `ids_runABCD`
+- `SRA_todos.txt` : List of SRA runs. Where there is only one run number and all other codes (project, sample and axperiment) are present. 22,155 
+- `SRA_runA.txt`: List of SRA runs. Where there is only one run number and not all other codes are present. 7,275
+- `SRA_runAB.tsv`: Lists of SRA runs where all observations have two run numbers. (This table has a lot of observations with repeated run numbers) 159
+- `SRA_runABC.tsv`: Lists of SRA runs where all observations have three run numbers. 2
+- `SRA_runABCD.tsv`: Lists of SRA runs where all observations have four run numbers. 74
+- `biosample_runA.txt`: List of BioSamples. Where the BioSample code was in the `ena_run` column and there is only one BioSample. 7,275
+- `biosample_sampleA.txt`: List of BioSamples. Where there was no SRA run and there is only one BioSample. 3,210
+- `biosample_sampleAB.tsv`: Lists of BioSamples. Where there was no SRA run and every observation has two BioSamples. 56
+- `ids_run_sample_NULL.tsv`: Complete table without information for `ena_run` or `ena_sample`. 2,412
  
