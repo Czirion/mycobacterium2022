@@ -2,6 +2,7 @@ library(tidyverse)
 setwd("/home/claudia/Documentos/tec/mycobacterium2022/who/")
 #The mmc2.xlsx table downloaded from the WHO was manualy modified to include antibiotic name in columns about it
 MMC2_S1<- readxl::read_xlsx("mmc2_modificado.xlsx", sheet = "S1", col_types = "text", .name_repair = "universal")
+MMC2_S1 <- as.data.frame(MMC2_S1)
 cols <- colnames(MMC2_S1)
 MMC2_S1[cols] <- lapply(MMC2_S1[cols], factor)
 
@@ -58,11 +59,6 @@ rm(ids_runA)
 conts <- as.data.frame(count(ids_runA_SRA, runA)) %>%
   filter(n == 2)
 
-ejemplo_doble_run <- ids_runA_SRA %>%
-  filter(runA %in% conts$runA)%>%
-  arrange(runA)
-write_tsv(ejemplo_doble_run, "ejemplo_doble_run.tsv")
-
 # Table with observations with two runs (runA and runB)
 ids_runAB <- ids_complemento %>%
   filter(!is.na(runA) &
@@ -100,12 +96,39 @@ ids_runNULL <- ids_complemento %>%
   select(-c(runA, runB, runC, runD))%>%
   droplevels()
 
-rm(ids_complemento)
+cols <- c("ena_sampleA", "ena_sampleB")
+ids_noRun_Biosamples <- ids_runNULL %>%
+  filter(!is.na(ena_sample))%>%
+  separate(col = ena_sample,
+           into = cols,
+           sep = " ")%>%
+  droplevels()
+ids_noRun_Biosamples[cols] <- lapply(ids_noRun_Biosamples[cols], factor)
 
-#### Filter all observations according to pasto or current methods ####
+ids_noRun_sampleA <- ids_noRun_Biosamples %>%
+  filter(!is.na(ena_sampleA) &
+           is.na(ena_sampleB)) %>%
+  select(-c(ena_sampleB))%>%
+  droplevels()
 
-malos <- c("WHO_past", "WHO_undefined", "CRyPTIC")
+ids_noRun_sampleAB <- ids_noRun_Biosamples %>%
+  filter(!is.na(ena_sampleA) &
+         !is.na(ena_sampleB)) %>%
+  droplevels()
+
+ids_run_sample_NULL <- ids_runNULL %>%
+  filter(is.na(ena_sample))%>%
+  droplevels()
+
+rm(ids_complemento, ids_noRun_Biosamples, ids_runNULL)
+
+#### Filter all observations according to past or current methods ####
+
+#Maintain only observations that only have NA or current in all antibiotics
 category_who <- MMC2_S1 %>%
                 select(isolate.name, 
                         contains("classification"))%>%
-                filter(Amikacin.classification.of.phenpotypic.method == "WHO_current" | is.na(Amikacin.classification.of.phenpotypic.method))
+                filter_at(vars(contains("classification")), all_vars(.=="WHO_current"|.=="WHO_past" | is.na(.)))%>%
+                droplevels()
+# Maintain only observations with W
+
