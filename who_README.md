@@ -32,7 +32,7 @@ the original table was broken down into many tables in order to extract the BioS
 ## All lists
 
 - `SRA_todos.txt` : List of SRA runs. Where there is only one run number and all other codes (project, sample and axperiment) are present. 22,155 
-- `SRA_runA.txt`: List of SRA runs. Where there is only one run number and not all other codes are present. 7,275
+- `SRA_runA.txt`: List of SRA runs. Where there is only one run number and not all other codes are present. 2,880
 - `SRA_runAB.tsv`: Lists of SRA runs where all observations have two run numbers. (This table has a lot of observations with repeated run numbers) 159
 - `SRA_runABC.tsv`: Lists of SRA runs where all observations have three run numbers. 2
 - `SRA_runABCD.tsv`: Lists of SRA runs where all observations have four run numbers. 74
