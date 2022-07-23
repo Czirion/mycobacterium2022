@@ -29,6 +29,6 @@ the original table was broken down into many tables in order to extract the BioS
 ~~~
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_todos.txt --sra --out metadata_SRA_todos.tsv -e <user-email>
 ../scripts/biosample2table.py --in fragmented_ids_tables/biosample_runA.txt --out metadata_biosample_runA.txt -e <user-email>
-
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleA.txt --out metadata_biosample_sampleA.txt -e claudia.zirion@cinvestav.mx
 ~~~
 {: .language-bash}
