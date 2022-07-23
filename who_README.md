@@ -23,10 +23,12 @@ the original table was broken down into many tables in order to extract the BioS
 - `biosample_sampleAB.tsv`: Lists of BioSamples. Where there was no SRA run and every observation has two BioSamples. 56
 - `ids_run_sample_NULL.tsv`: Complete table without information for `ena_run` or `ena_sample`. 2,412
  
-### Extract metadata from SRA_todos.txt
+### Extract metadata fragmented tables
 
 ⚡
 ~~~
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_todos.txt --sra --out metadata_SRA_todos.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_runA.txt --out metadata_biosample_runA.txt -e <user-email>
+
 ~~~
 {: .language-bash}
