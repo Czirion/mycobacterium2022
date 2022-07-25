@@ -58,7 +58,9 @@ grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f4 > fragmented_ids
 Then extract the metadata:  
 :zap:
 ~~~
-../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_A.txt --sra --out metadata_SRA_runAB_A.tsv -e claudia.zirion@cinvestav.mx
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_A.txt --sra --out metadata_SRA_runAB_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_B.txt --sra --out metadata_SRA_runAB_B.tsv -e <user-email>
+
 ~~~
 [: .language-bash}
 
