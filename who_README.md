@@ -25,6 +25,7 @@ the original table was broken down into many tables in order to extract the BioS
  
 ### Extract metadata fragmented tables
 
+For the files with only one column of sample or run codes:
 ⚡
 ~~~
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_todos.txt --sra --out metadata_SRA_todos.tsv -e <user-email>
@@ -34,3 +35,23 @@ the original table was broken down into many tables in order to extract the BioS
 
 ~~~
 {: .language-bash}
+
+For the files with two or more columns of run codes:  
+
+First, separate each column in different files:  
+:zap:
+~~~
+grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f1 > fragmented_ids_tables/SRA_runAB_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f2 > fragmented_ids_tables/SRA_runAB_B.txt
+~~~
+{: .language-bash}
+
+Then extract the metadata:  
+:zap:
+~~~
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_A.txt --sra --out metadata_SRA_runAB_A.tsv -e claudia.zirion@cinvestav.mx
+~~~
+[: .language-bash}
+
+
+
