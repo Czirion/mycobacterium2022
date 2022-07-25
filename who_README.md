@@ -36,7 +36,8 @@ For the files with only one column of sample or run codes:
 ~~~
 {: .language-bash}
 
-For the files with two or more columns of run codes:  
+For the files with two or more columns of run codes: 
+(Each group of run codes in the same row should have the exact same metadata, but I want to confirm)
 
 First, separate each column in different files:  
 :zap:
