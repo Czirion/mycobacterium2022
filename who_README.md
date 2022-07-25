@@ -44,6 +44,14 @@ First, separate each column in different files:
 ~~~
 grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f1 > fragmented_ids_tables/SRA_runAB_A.txt
 grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f2 > fragmented_ids_tables/SRA_runAB_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f1 > fragmented_ids_tables/SRA_runABC_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f2 > fragmented_ids_tables/SRA_runABC_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f3 > fragmented_ids_tables/SRA_runABC_C.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f1 > fragmented_ids_tables/SRA_runABCD_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f2 > fragmented_ids_tables/SRA_runABCD_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f3 > fragmented_ids_tables/SRA_runABCD_C.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f4 > fragmented_ids_tables/SRA_runABCD_D.txt
+
 ~~~
 {: .language-bash}
 
