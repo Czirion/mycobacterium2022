@@ -8,7 +8,7 @@
 - Go to the bottom of the page to the `Analysis tools` section and in the `Export:` subsection click on the `Dataset` button.  
 - In the box `Provenance fields` click `All`, and then click `SUBMIT`.  A page called `Job status viewer` will appear.
 - When the `Output`box appears, click on the `Tar file containing all output files`.
-
+- Extract the file and change the name of the `txt` to `pubmlst_metadata.tsv`.
 
 ## Download genomes
 
