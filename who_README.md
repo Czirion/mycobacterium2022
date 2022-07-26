@@ -23,10 +23,57 @@ the original table was broken down into many tables in order to extract the BioS
 - `biosample_sampleAB.tsv`: Lists of BioSamples. Where there was no SRA run and every observation has two BioSamples. 56
 - `ids_run_sample_NULL.tsv`: Complete table without information for `ena_run` or `ena_sample`. 2,412
  
-### Extract metadata from SRA_todos.txt
+### Extract metadata fragmented tables
 
+For the files with only one column of sample or run codes:
 ⚡
 ~~~
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_todos.txt --sra --out metadata_SRA_todos.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_runA.txt --out metadata_biosample_runA.txt -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleA.txt --out metadata_biosample_sampleA.txt -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runA.txt --sra --out metadata_SRA_runA.txt -e <user-email>
+
 ~~~
 {: .language-bash}
+
+For the files with two or more columns of run codes: 
+(Each group of run codes in the same row should have the exact same metadata, but I want to confirm)
+
+First, separate each column in different files:  
+:zap:
+~~~
+grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f1 > fragmented_ids_tables/SRA_runAB_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runAB.tsv | cut -f2 > fragmented_ids_tables/SRA_runAB_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f1 > fragmented_ids_tables/SRA_runABC_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f2 > fragmented_ids_tables/SRA_runABC_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABC.tsv | cut -f3 > fragmented_ids_tables/SRA_runABC_C.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f1 > fragmented_ids_tables/SRA_runABCD_A.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f2 > fragmented_ids_tables/SRA_runABCD_B.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f3 > fragmented_ids_tables/SRA_runABCD_C.txt
+grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f4 > fragmented_ids_tables/SRA_runABCD_D.txt
+grep "ena_sampleA" -v  fragmented_ids_tables/biosample_sampleAB.tsv | cut -f1 > fragmented_ids_tables/biosample_sampleAB_A.txt
+grep "ena_sampleA" -v  fragmented_ids_tables/biosample_sampleAB.tsv | cut -f2 > fragmented_ids_tables/biosample_sampleAB_B.txt
+
+
+~~~
+{: .language-bash}
+
+Then extract the metadata:  
+:zap:
+~~~
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_A.txt --sra --out metadata_SRA_runAB_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runAB_B.txt --sra --out metadata_SRA_runAB_B.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABC_A.txt --sra --out metadata_SRA_runABC_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABC_B.txt --sra --out metadata_SRA_runABC_B.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABC_C.txt --sra --out metadata_SRA_runABC_C.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_A.txt --sra --out metadata_SRA_runABCD_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_B.txt --sra --out metadata_SRA_runABCD_B.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_C.txt --sra --out metadata_SRA_runABCD_C.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_D.txt --sra --out metadata_SRA_runABCD_D.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleAB_A.txt --out metadata_biosample_sampleAB_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleAB_B.txt --out metadata_biosample_sampleAB_B.tsv -e <user-email>
+~~~
+[: .language-bash}
+
+
+
