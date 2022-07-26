@@ -70,7 +70,8 @@ Then extract the metadata:
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_B.txt --sra --out metadata_SRA_runABCD_B.tsv -e <user-email>
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_C.txt --sra --out metadata_SRA_runABCD_C.tsv -e <user-email>
 ../scripts/biosample2table.py --in fragmented_ids_tables/SRA_runABCD_D.txt --sra --out metadata_SRA_runABCD_D.tsv -e <user-email>
-
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleAB_A.txt --out metadata_biosample_sampleAB_A.tsv -e <user-email>
+../scripts/biosample2table.py --in fragmented_ids_tables/biosample_sampleAB_B.txt --out metadata_biosample_sampleAB_B.tsv -e <user-email>
 ~~~
 [: .language-bash}
 
