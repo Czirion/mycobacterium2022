@@ -51,6 +51,9 @@ grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f1 > fragmented_ids
 grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f2 > fragmented_ids_tables/SRA_runABCD_B.txt
 grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f3 > fragmented_ids_tables/SRA_runABCD_C.txt
 grep "runA" -v  fragmented_ids_tables/SRA_runABCD.tsv | cut -f4 > fragmented_ids_tables/SRA_runABCD_D.txt
+grep "ena_sampleA" -v  fragmented_ids_tables/biosample_sampleAB.tsv | cut -f1 > fragmented_ids_tables/biosample_sampleAB_A.txt
+grep "ena_sampleA" -v  fragmented_ids_tables/biosample_sampleAB.tsv | cut -f2 > fragmented_ids_tables/biosample_sampleAB_B.txt
+
 
 ~~~
 {: .language-bash}
