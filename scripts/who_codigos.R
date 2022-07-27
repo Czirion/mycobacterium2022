@@ -141,7 +141,8 @@ ids_run_sample_NULL <- ids_runNULL %>%
 write_tsv(ids_run_sample_NULL, "fragmented_ids_tables/ids_run_sample_NULL.tsv")
 
 rm(ids_complemento, ids_noRun_Biosamples, ids_runNULL)
-
+#Remove lists
+rm(list= ls(pattern='list'))
 
 
 
