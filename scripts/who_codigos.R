@@ -142,20 +142,6 @@ write_tsv(ids_run_sample_NULL, "fragmented_ids_tables/ids_run_sample_NULL.tsv")
 
 rm(ids_complemento, ids_noRun_Biosamples, ids_runNULL)
 
-#### Filter all observations according to past or current methods ####
 
-#Maintain only observations that only have NA or current in all antibiotics
-who_current_or_na <- MMC2_S1 %>%
-                select(isolate.name, 
-                        contains("classification"))%>%
-                filter_at(vars(contains("classification")), all_vars(.=="WHO_current"| is.na(.)))%>%
-                droplevels()
 
-who_current_on_any <- MMC2_S1 %>%
-  select(isolate.name, 
-         contains("classification"))%>%
-  filter_at(vars(contains("classification")), any_vars(.=="WHO_current"))%>%
-  droplevels()
-
-# Maintain only observations with W
 
