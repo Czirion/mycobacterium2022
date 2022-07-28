@@ -21,12 +21,15 @@ for (file in 1:15) {
 
 #### Rename who fragmented tables so they can be joined with the corresponding metadata ####
 biosample_runA <- rename(biosample_runA, BioSample = runA)
+SRA_runA <- rename(SRA_runA, SRA_Run = runA)
 #biosample_sampleA <- rename(biosample_runA, BioSample = runA)
 
-#### Join who fragmented tables with metadata tables ####
+##### Join who fragmented tables with metadata tables #####
+#### biosample_runA ####
 biosample_runA_clean <- full_join(biosample_runA, metadata_biosample_runA, by= "BioSample")%>%
   select(isolate.name,
          BioSample,
+         ena_project,
          SRA.accession,
          collection_date,
          country,
@@ -58,6 +61,23 @@ biosample_runA_clean <- droplevels(biosample_runA_clean)
 biosample_runA_clean_who_current_on_any<- biosample_runA_clean %>%
   filter_at(vars(contains("classification")), any_vars(.=="WHO_current"))%>%
   droplevels()
+
+
+#### SRA_runA ####
+SRA_runA_clean <- full_join(SRA_runA, metadata_SRA_runA, by= "SRA_Run")%>%
+  select(isolate.name,
+         SRA_Run,
+         BioSample,
+         ena_project,
+         collection_date,
+         country,
+         lat_lon,
+         host,
+         host_health_state,
+         host_disease,
+         isolation_source,
+         contains("classification"),
+         contains("phenotype"))
 
 
 #### Filter all observations according to past or current methods ####
