@@ -19,14 +19,13 @@ for (file in 1:15) {
    rm(file,temp)
    }
 
-#### Rename who fragmented tables so they can be joined with the corresponding metadata ####
-biosample_runA <- rename(biosample_runA, BioSample = runA)
-SRA_runA <- rename(SRA_runA, SRA_Run = runA)
 #biosample_sampleA <- rename(biosample_runA, BioSample = runA)
 
-##### Join who fragmented tables with metadata tables #####
+##### Join WHO fragmented tables with metadata tables #####
 #### biosample_runA ####
-biosample_runA_clean <- full_join(biosample_runA, metadata_biosample_runA, by= "BioSample")%>%
+biosample_runA <- rename(biosample_runA, BioSample = runA)
+biosample_runA_mezcla <- full_join(biosample_runA, metadata_biosample_runA, by= "BioSample")
+biosample_runA_clean <- biosample_runA_mezcla %>%
   select(isolate.name,
          BioSample,
          ena_project,
@@ -63,8 +62,13 @@ biosample_runA_clean_who_current_on_any<- biosample_runA_clean %>%
   droplevels()
 
 
+#### biosample_sampleA ####
+#Está difícil mezclar las dos tablas porque la tabla de metadatos no conserva los códigos de "sample" del ENA, sino que pone los de NCBI. Entonces ya no hay ninguna columna por la cual coincidan ambas tablas
+
 #### SRA_runA ####
-SRA_runA_clean <- full_join(SRA_runA, metadata_SRA_runA, by= "SRA_Run")%>%
+SRA_runA <- rename(SRA_runA, SRA_Run = runA)
+SRA_runA_mezcla<- full_join(SRA_runA, metadata_SRA_runA, by= "SRA_Run")
+SRA_runA_clean <- SRA_runA_mezcla %>%
   select(isolate.name,
          SRA_Run,
          BioSample,
@@ -79,7 +83,38 @@ SRA_runA_clean <- full_join(SRA_runA, metadata_SRA_runA, by= "SRA_Run")%>%
          contains("classification"),
          contains("phenotype"))
 
+SRA_runA_clean$host<- recode_factor(SRA_runA_clean$host, "\"\"\"Homo sapiens\"" = "Homo sapiens")
+SRA_runA_clean$host_disease<- recode_factor(SRA_runA_clean$host_disease, "Mycobacterium tuberculosis infection" = "Tuberculosis" )
+SRA_runA_clean$isolation_source<- recode_factor(SRA_runA_clean$isolation_source, "BAL" = "Bronchoalveolar lavage" )
+SRA_runA_clean$isolation_source<- recode_factor(SRA_runA_clean$isolation_source, "Bronch wash" = "Bronchoalveolar lavage" )
+SRA_runA_clean$isolation_source<- recode_factor(SRA_runA_clean$isolation_source, "Bronchial Alveolar Lavage" = "Bronchoalveolar lavage" )
+SRA_runA_clean$isolation_source<- recode_factor(SRA_runA_clean$isolation_source, "not known" = NA_character_ )
 
+SRA_runA_clean <- droplevels(SRA_runA_clean)
+
+# Filter table according to who current methods
+SRA_runA_clean_who_current_on_any<- SRA_runA_clean %>%
+  filter_at(vars(contains("classification")), any_vars(.=="WHO_current"))%>%
+  droplevels()
+
+
+
+
+#### SRA_runAB ####
+selected_metadatos_SRA_runAB_A <- metadata_SRA_runAB_A %>%
+  select(common.name,
+         geo_loc_name,
+         host,
+         isolate,
+         isolation_source,
+         sample_name)
+selected_metadatos_SRA_runAB_B <- metadata_SRA_runAB_B %>%
+  select(common.name,
+         geo_loc_name,
+         host,
+         isolate,
+         isolation_source,
+         sample_name)
 #### Filter all observations according to past or current methods ####
 
 #Maintain only observations that only have NA or current in all antibiotics
